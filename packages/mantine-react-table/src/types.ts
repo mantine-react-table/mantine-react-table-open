@@ -447,6 +447,7 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = {
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   editVariant?: 'multi-select' | 'select' | 'text';
+  enableCellHoverReveal?: boolean;
   enableClickToCopy?: ((cell: MRT_Cell<TData>) => boolean) | boolean;
   enableColumnActions?: boolean;
   enableColumnDragging?: boolean;

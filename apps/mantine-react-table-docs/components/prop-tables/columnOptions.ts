@@ -137,6 +137,16 @@ export const columnOptions: ColumnOption[] = [
     type: "'select' | 'text' | 'multi-select'",
   },
   {
+    columnOption: 'enableCellHoverReveal',
+    defaultValue: '',
+    description: 'Enable or disable cell hover reveal for this column.',
+    link: '',
+    linkText: '',
+    source: 'MRT',
+    required: false,
+    type: 'boolean',
+  },
+  {
     columnOption: 'enableClickToCopy',
     defaultValue: '',
     description: 'Enable the click to copy feature for this column.',
