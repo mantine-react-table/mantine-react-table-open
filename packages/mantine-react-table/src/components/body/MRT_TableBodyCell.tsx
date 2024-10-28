@@ -9,6 +9,8 @@ import {
   type MouseEvent,
   type RefObject,
   useEffect,
+  useLayoutEffect,
+  useRef,
   useState,
 } from 'react';
 
@@ -194,6 +196,17 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
     table,
   };
 
+  const divRef = useRef<any>(null);
+  const [isOverflowing, setIsOverflowing] = useState(false);
+
+  useLayoutEffect(() => {
+    const div = divRef.current;
+    if (div) {
+      const isOverflow = div.scrollWidth > div.clientWidth;
+      setIsOverflowing(isOverflow);
+    }
+  }, [tableCellProps.children ]);
+
   return (
     <TableTd
       data-column-pinned={isColumnPinned || undefined}
@@ -243,6 +256,7 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
           classes['root-editable-hover'],
         columnDefType === 'data' && classes['root-data-col'],
         density === 'xs' && classes['root-nowrap'],
+        columnDef.enableCellHoverReveal && classes['root-cell-hover-reveal'],
         tableCellProps?.className,
       )}
       onDoubleClick={handleDoubleClick}
@@ -252,6 +266,14 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
         ...parseFromValuesOrFunc(tableCellProps.style, theme),
       })}
     >
+      <div       
+        ref={divRef}
+        className={
+          clsx(
+            columnDef.enableCellHoverReveal && classes["cell-hover-reveal"],
+            isOverflowing && classes['overflowing']
+          )}
+      >
       {tableCellProps.children ?? (
         <>
           {cell.getIsPlaceholder() ? (
@@ -284,6 +306,7 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
           )}
         </>
       )}
+      </div>
     </TableTd>
   );
 };
