@@ -196,14 +196,14 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
     table,
   };
 
-  const divRef = useRef<any>(null);
-  const [isOverflowing, setIsOverflowing] = useState(false);
+  const cellHoverRevealDivRef = useRef<any>(null);
+  const [isCellContentOverflowing, setIsCellContentOverflowing] = useState(false);
 
   useLayoutEffect(() => {
-    const div = divRef.current;
+    const div = cellHoverRevealDivRef.current;
     if (div) {
       const isOverflow = div.scrollWidth > div.clientWidth;
-      setIsOverflowing(isOverflow);
+      setIsCellContentOverflowing(isOverflow);
     }
   }, [tableCellProps.children]);
 
@@ -307,14 +307,15 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
       })}
     >
       <>
-        {tableCellProps.children ??
-          (columnDef.enableCellHoverReveal ? (
-            <div         ref={divRef}
-            className={
-              clsx(
+        {tableCellProps.children ?? (
+          columnDef.enableCellHoverReveal ? (
+            <div
+              ref={cellHoverRevealDivRef}
+              className={clsx(
                 columnDef.enableCellHoverReveal && classes["cell-hover-reveal"],
-                isOverflowing && classes['overflowing']
-              )}>
+                isCellContentOverflowing && classes['overflowing']
+              )}
+            >
               {renderCellContent()}
               {cell.getIsGrouped() && !columnDef.GroupedCell && (
                 <> ({row.subRows?.length})</>
@@ -327,7 +328,8 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
                 <> ({row.subRows?.length})</>
               )}
             </>
-          ))}
+          )
+        )}
       </>
     </TableTd>
   );
