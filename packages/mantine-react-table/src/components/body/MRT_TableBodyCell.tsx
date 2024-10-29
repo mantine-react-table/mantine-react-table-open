@@ -307,13 +307,15 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
       })}
     >
       <>
-        {tableCellProps.children ?? (
-          columnDef.enableCellHoverReveal ? (
+        {tableCellProps.children ??
+          (columnDef.enableCellHoverReveal ? (
             <div
               ref={cellHoverRevealDivRef}
               className={clsx(
-                columnDef.enableCellHoverReveal && classes["cell-hover-reveal"],
-                isCellContentOverflowing && classes['overflowing']
+                columnDef.enableCellHoverReveal &&
+                  !(isCreating || isEditing) &&
+                  classes['cell-hover-reveal'],
+                isCellContentOverflowing && classes['overflowing'],
               )}
             >
               {renderCellContent()}
