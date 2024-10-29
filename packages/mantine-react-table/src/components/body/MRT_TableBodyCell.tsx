@@ -197,7 +197,8 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
   };
 
   const cellHoverRevealDivRef = useRef<any>(null);
-  const [isCellContentOverflowing, setIsCellContentOverflowing] = useState(false);
+  const [isCellContentOverflowing, setIsCellContentOverflowing] =
+    useState(false);
 
   useLayoutEffect(() => {
     const div = cellHoverRevealDivRef.current;
@@ -205,7 +206,7 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
       const isOverflow = div.scrollWidth > div.clientWidth;
       setIsCellContentOverflowing(isOverflow);
     }
-  }, [tableCellProps.children]);
+  }, [cell]);
 
   const renderCellContent = () => {
     if (cell.getIsPlaceholder()) {
