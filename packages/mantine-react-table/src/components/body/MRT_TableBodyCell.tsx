@@ -9,7 +9,6 @@ import {
   type MouseEvent,
   type RefObject,
   useEffect,
-  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
@@ -200,16 +199,19 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
   const [isCellContentOverflowing, setIsCellContentOverflowing] =
     useState(false);
 
-  useLayoutEffect(() => {
+  const onMouseEnter = () => {
+    if(!columnDef.enableCellHoverReveal) return;
     const div = cellHoverRevealDivRef.current;
     if (div) {
-      // Use setTimeout(0) to ensure DOM is fully updated before measuring overflow
-      setTimeout(() => {
         const isOverflow = div.scrollWidth > div.clientWidth;
         setIsCellContentOverflowing(isOverflow);
-      }, 0);
     }
-  }, [cell, density]);
+  }
+
+  const onMouseLeave = () => {
+    if(!columnDef.enableCellHoverReveal) return;
+    setIsCellContentOverflowing(false);
+  }
 
   const renderCellContent = () => {
     if (cell.getIsPlaceholder()) {
@@ -309,6 +311,8 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
         ...widthStyles,
         ...parseFromValuesOrFunc(tableCellProps.style, theme),
       })}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       <>
         {tableCellProps.children ??
