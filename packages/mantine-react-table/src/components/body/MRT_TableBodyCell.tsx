@@ -203,10 +203,13 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
   useLayoutEffect(() => {
     const div = cellHoverRevealDivRef.current;
     if (div) {
-      const isOverflow = div.scrollWidth > div.clientWidth;
-      setIsCellContentOverflowing(isOverflow);
+      // Use setTimeout(0) to ensure DOM is fully updated before measuring overflow
+      setTimeout(() => {
+        const isOverflow = div.scrollWidth > div.clientWidth;
+        setIsCellContentOverflowing(isOverflow);
+      }, 0);
     }
-  }, [cell]);
+  }, [cell, density]);
 
   const renderCellContent = () => {
     if (cell.getIsPlaceholder()) {
@@ -331,8 +334,7 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
                 <> ({row.subRows?.length})</>
               )}
             </>
-          )
-        )}
+          ))}
       </>
     </TableTd>
   );
