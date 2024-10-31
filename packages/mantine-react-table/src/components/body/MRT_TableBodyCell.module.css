@@ -83,6 +83,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: var(--mrt-cell-align);
 }
 
 .cell-hover-reveal.overflowing:hover{
