@@ -34,6 +34,7 @@ interface Props<TData extends MRT_RowData> extends TableTrProps {
 }
 
 export const MRT_TableBodyRow = <TData extends MRT_RowData>({
+  children,
   columnVirtualizer,
   numRows,
   pinnedRowIds,
@@ -189,7 +190,7 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
         {virtualPaddingLeft ? (
           <Box component="td" display="flex" w={virtualPaddingLeft} />
         ) : null}
-        {(virtualColumns ?? row.getVisibleCells()).map(
+        {children ? children : (virtualColumns ?? row.getVisibleCells()).map(
           (cellOrVirtualCell, renderedColumnIndex) => {
             let cell = cellOrVirtualCell as MRT_Cell<TData>;
             if (columnVirtualizer) {

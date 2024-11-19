@@ -10,6 +10,7 @@ import {
   type MRT_VirtualItem,
 } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
+import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
 
 interface Props<TData extends MRT_RowData> extends TableTdProps {
   parentRowRef: RefObject<HTMLTableRowElement>;
@@ -57,8 +58,15 @@ export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
     ...rest,
   };
 
+  const internalEditComponents = row
+    .getAllCells()
+    .filter((cell) => cell.column.columnDef.columnDefType === 'data')
+    .map((cell) => (
+      <MRT_EditCellTextInput cell={cell} key={cell.id} table={table} />
+    ));
+
   const DetailPanel =
-    !isLoading && row.getIsExpanded() && renderDetailPanel?.({ row, table });
+    !isLoading && row.getIsExpanded() && renderDetailPanel?.({ row, table, internalEditComponents });
 
   return (
     <TableTr
