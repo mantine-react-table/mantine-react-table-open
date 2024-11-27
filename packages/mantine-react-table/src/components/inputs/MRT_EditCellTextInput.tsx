@@ -136,8 +136,8 @@ export const MRT_EditCellTextInput = <TData extends MRT_RowData>({
         value={value as any}
         {...(selectProps as MRT_SelectProps)}
         onBlur={handleBlur}
-        onChange={(value) => {
-          (selectProps as MRT_SelectProps).onChange?.(value as any);
+        onChange={(value, option) => {
+          (selectProps as MRT_SelectProps).onChange?.(value as any, option);
           setValue(value);
         }}
         onClick={(e) => {
