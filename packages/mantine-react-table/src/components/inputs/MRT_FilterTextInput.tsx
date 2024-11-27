@@ -245,7 +245,7 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
             : textInputProps?.style),
     },
     title: filterPlaceholder,
-    value: filterValue,
+    value: isMultiSelectFilter && !Array.isArray(filterValue) ? [] : filterValue,
     variant: 'unstyled',
   } as const;
 
