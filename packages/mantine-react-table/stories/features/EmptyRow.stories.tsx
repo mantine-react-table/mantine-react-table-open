@@ -5,8 +5,9 @@ import {
   MantineReactTable,
   useMantineReactTable,
 } from '../../src';
-import { Center, Flex, Group, Text } from '@mantine/core';
+import { Center, Flex, Group, Stack, Text, Switch } from '@mantine/core';
 import { type Meta } from '@storybook/react';
+import { useState } from 'react';
 
 const meta: Meta = {
   title: 'Features/Empty Row Examples',
@@ -17,8 +18,8 @@ export default meta;
 type Person = {
   firstName: string;
   lastName: string;
-  address: string;
-  city: string;
+  address?: string;
+  city?: string;
 };
 
 const data: Person[] = [];
@@ -103,11 +104,28 @@ export const EmptyRowExplanationPannel = () => {
   return <MantineReactTable table={table} />;
 };
 
-export const FormInEmptyRow = () => {
+const sampleData: Person[] = [
+  {
+    firstName: 'Alice',
+    lastName: 'Smith',
+  },
+  {
+    firstName: 'Bob',
+    lastName: 'Johnson',
+  },
+  {
+    firstName: 'Charlie',
+    lastName: 'Williams',
+  },
+];
+
+export const AddingOrEditingInDetailPannel = () => {
   //Now that empty row is an actual row, detail pannel is available, and can ne used as a form, maybe?
+  const [withData, setWithData] = useState(false);
+
   const table = useMantineReactTable({
     columns,
-    data,
+    data: withData ? sampleData: data,
     renderDetailPanel: ({ table, row, internalEditComponents }) => (
       <Center>
         <form onSubmit={(e) => e.preventDefault()}>
@@ -127,5 +145,14 @@ export const FormInEmptyRow = () => {
     ),
   });
 
-  return <MantineReactTable table={table} />;
+  return (
+    <Stack>
+      <Switch
+        checked={withData}
+        label="Show data"
+        onChange={(e) => setWithData(e.currentTarget.checked)}
+      />
+      <MantineReactTable table={table} />
+    </Stack>
+  );
 };
