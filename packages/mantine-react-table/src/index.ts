@@ -27,6 +27,7 @@ export * from './components/MantineReactTable';
 export * from './components/body/MRT_TableBody';
 export * from './components/body/MRT_TableBodyCell';
 export * from './components/body/MRT_TableBodyCellValue';
+export * from './components/body/MRT_TableBodyEmptyRow';
 export * from './components/body/MRT_TableBodyRow';
 export * from './components/body/MRT_TableBodyRowGrabHandle';
 export * from './components/body/MRT_TableBodyRowPinButton';

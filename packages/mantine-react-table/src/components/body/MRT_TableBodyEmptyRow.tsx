@@ -1,12 +1,7 @@
 import clsx from 'clsx';
 import classes from './MRT_TableBody.module.css';
 import { useMemo } from 'react';
-import {
-  type TableProps,
-  Text,
-  TableTd,
-  TableTrProps,
-} from '@mantine/core';
+import { type TableProps, Text, TableTd, TableTrProps } from '@mantine/core';
 import { MRT_TableBodyRow } from './MRT_TableBodyRow';
 import {
   type MRT_Row,
@@ -16,8 +11,7 @@ import {
 import { createRow } from '@tanstack/react-table';
 import { MRT_ExpandButton } from '../buttons/MRT_ExpandButton';
 
-export interface Props<TData extends MRT_RowData> extends TableTrProps {
-  renderedRowIndex?: number;
+interface Props<TData extends MRT_RowData> extends TableTrProps {
   table: MRT_TableInstance<TData>;
   tableProps: Partial<TableProps>;
 }
@@ -26,7 +20,7 @@ export const MRT_TableBodyEmptyRow = <TData extends MRT_RowData>({
   table,
   tableProps,
   ...commonRowProps
-}:Props<TData>) => {
+}: Props<TData>) => {
   const {
     getState,
     options: {
@@ -35,7 +29,7 @@ export const MRT_TableBodyEmptyRow = <TData extends MRT_RowData>({
       renderDetailPanel,
       renderEmptyRowsFallback,
     },
-    refs: {  tablePaperRef },
+    refs: { tablePaperRef },
   } = table;
   const { columnFilters, globalFilter } = getState();
 
