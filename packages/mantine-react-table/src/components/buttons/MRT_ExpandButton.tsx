@@ -13,6 +13,7 @@ import {
   type MRT_TableInstance,
 } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
+import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
 
 interface Props<TData extends MRT_RowData> extends ActionIconProps {
   row: MRT_Row<TData>;
@@ -42,10 +43,18 @@ export const MRT_ExpandButton = <TData extends MRT_RowData>({
     }),
     ...rest,
   };
+
+  const internalEditComponents = row
+    .getAllCells()
+    .filter((cell) => cell.column.columnDef.columnDefType === 'data')
+    .map((cell) => (
+      <MRT_EditCellTextInput cell={cell} key={cell.id} table={table} />
+    ));
+
   const canExpand = row.getCanExpand();
   const isExpanded = row.getIsExpanded();
 
-  const DetailPanel = !!renderDetailPanel?.({ row, table });
+  const DetailPanel = !!renderDetailPanel?.({ row, table, internalEditComponents });
 
   const handleToggleExpand = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -59,9 +68,8 @@ export const MRT_ExpandButton = <TData extends MRT_RowData>({
     <Tooltip
       disabled={!canExpand && !DetailPanel}
       label={
-        actionIconProps?.title ?? (isExpanded
-          ? localization.collapse
-          : localization.expand)
+        actionIconProps?.title ??
+        (isExpanded ? localization.collapse : localization.expand)
       }
       openDelay={1000}
       withinPortal

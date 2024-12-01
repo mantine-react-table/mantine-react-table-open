@@ -5,7 +5,6 @@ import {
   type TableProps,
   TableTbody,
   type TableTbodyProps,
-  Text,
 } from '@mantine/core';
 import { MRT_TableBodyRow, Memo_MRT_TableBodyRow } from './MRT_TableBodyRow';
 import { useMRT_RowVirtualizer } from '../../hooks/useMRT_RowVirtualizer';
@@ -18,6 +17,7 @@ import {
   type MRT_VirtualItem,
 } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
+import { MRT_TableBodyEmptyRow } from './MRT_TableBodyEmptyRow';
 
 export interface MRT_TableBodyProps<TData extends MRT_RowData>
   extends TableTbodyProps {
@@ -42,16 +42,14 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
       enableStickyFooter,
       enableStickyHeader,
       layoutMode,
-      localization,
       mantineTableBodyProps,
       memoMode,
       renderDetailPanel,
-      renderEmptyRowsFallback,
       rowPinningDisplayMode,
     },
-    refs: { tableFooterRef, tableHeadRef, tablePaperRef },
+    refs: { tableFooterRef, tableHeadRef },
   } = table;
-  const { columnFilters, globalFilter, isFullScreen, rowPinning } = getState();
+  const { isFullScreen, rowPinning } = getState();
 
   const tableBodyProps = {
     ...parseFromValuesOrFunc(mantineTableBodyProps, { table }),
@@ -133,34 +131,7 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
       >
         {tableBodyProps?.children ??
           (!rows.length ? (
-            <tr
-              className={clsx(
-                'mrt-table-body-row',
-                layoutMode?.startsWith('grid') && classes['empty-row-tr-grid'],
-              )}
-            >
-              <td
-                className={clsx(
-                  'mrt-table-body-cell',
-                  layoutMode?.startsWith('grid') &&
-                    classes['empty-row-td-grid'],
-                )}
-                colSpan={table.getVisibleLeafColumns().length}
-              >
-                {renderEmptyRowsFallback?.({ table }) ?? (
-                  <Text
-                    __vars={{
-                      '--mrt-paper-width': `${tablePaperRef.current?.clientWidth}`,
-                    }}
-                    className={clsx(classes['empty-row-td-content'])}
-                  >
-                    {globalFilter || columnFilters.length
-                      ? localization.noResultsFound
-                      : localization.noRecordsToDisplay}
-                  </Text>
-                )}
-              </td>
-            </tr>
+            <MRT_TableBodyEmptyRow {...commonRowProps} />
           ) : (
             <>
               {(virtualRows ?? rows).map(

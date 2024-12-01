@@ -1218,6 +1218,7 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
   renderDetailPanel?: (props: {
     row: MRT_Row<TData>;
     table: MRT_TableInstance<TData>;
+    internalEditComponents: ReactNode[];
   }) => ReactNode;
   renderEditRowModalContent?: (props: {
     internalEditComponents: ReactNode[];

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Flex, Stack, Switch, Title } from '@mantine/core';
+import { Center, Flex, Group, Stack, Switch, Title, Text } from '@mantine/core';
 import {
   type MRT_Cell,
   type MRT_ColumnOrderState,
@@ -7,6 +7,7 @@ import {
   type MRT_TableOptions,
   MantineReactTable,
   MRT_ColumnDef,
+  useMantineReactTable,
 } from '../../src';
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
@@ -1235,6 +1236,67 @@ export const EditingTurnedOnDynamically = () => {
         onEditingRowSave={handleSaveRow}
         state={{ columnOrder }}
       />
+    </Stack>
+  );
+};
+
+export const EditingInDetailPannel = () => {
+  const [withData, setWithData] = useState(false);
+
+  const columns = [
+    {
+      accessorKey: 'firstName',
+      header: 'First Name',
+    },
+    {
+      accessorKey: 'lastName',
+      header: 'Last Name',
+    },
+    {
+      accessorKey: 'address',
+      header: 'Address',
+    },
+    {
+      accessorKey: 'state',
+      header: 'State',
+    },
+    {
+      accessorKey: 'phoneNumber',
+      enableEditing: false,
+      header: 'Phone Number',
+    },
+  ];
+
+  const table = useMantineReactTable({
+    columns,
+    data: withData ? data : [],
+    renderDetailPanel: ({ table, row, internalEditComponents }) => (
+      <Center>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <Group gap="md" pb={24} pt={16}>
+            {internalEditComponents}
+          </Group>
+        </form>
+        <Flex justify="flex-end">
+          <MRT_EditActionButtons row={row} table={table} variant="text" />
+        </Flex>
+      </Center>
+    ),
+    renderEmptyRowsFallback: () => (
+      <Center>
+        <Text>This table is empty, click on the chevron to add a record</Text>
+      </Center>
+    ),
+  });
+
+  return (
+    <Stack>
+      <Switch
+        checked={withData}
+        label="Show data"
+        onChange={(e) => setWithData(e.currentTarget.checked)}
+      />
+      <MantineReactTable table={table} />
     </Stack>
   );
 };
