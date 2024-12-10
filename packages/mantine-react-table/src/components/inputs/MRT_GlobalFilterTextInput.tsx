@@ -30,6 +30,7 @@ export const MRT_GlobalFilterTextInput = <TData extends MRT_RowData>({
       localization,
       mantineSearchTextInputProps,
       manualFiltering,
+      positionGlobalFilter
     },
     refs: { searchInputRef },
     setGlobalFilter,
@@ -91,7 +92,7 @@ export const MRT_GlobalFilterTextInput = <TData extends MRT_RowData>({
       <TextInput
         leftSection={!enableGlobalFilterModes && <IconSearch />}
         mt={0}
-        mx="sm"
+        mx={positionGlobalFilter !== 'left' ? 'mx' : undefined}
         onChange={(event) => setSearchValue(event.target.value)}
         placeholder={localization.search}
         rightSection={
