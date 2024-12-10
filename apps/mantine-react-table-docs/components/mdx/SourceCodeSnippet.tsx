@@ -183,9 +183,12 @@ export const SourceCodeSnippet = ({
                         setColorScheme(
                           value?.startsWith('dark') ? 'dark' : 'light',
                         );
-                        value === 'darkDark'
-                          ? setDarkDark(true)
-                          : setDarkDark(false);
+
+                        if (value === 'darkDark') {
+                          setDarkDark(true);
+                        } else {
+                          setDarkDark(false);
+                        }
                         plausible(`toggle-theme-${value}-mode`);
                       }}
                       className={classes.colorSchemeSelect}

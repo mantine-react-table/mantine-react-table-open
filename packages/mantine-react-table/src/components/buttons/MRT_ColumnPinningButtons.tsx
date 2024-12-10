@@ -1,6 +1,9 @@
 import clsx from 'clsx';
+
 import classes from './MRT_ColumnPinningButtons.module.css';
+
 import { ActionIcon, Flex, Tooltip } from '@mantine/core';
+
 import {
   type MRT_Column,
   type MRT_RowData,

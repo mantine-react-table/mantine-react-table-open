@@ -1,5 +1,6 @@
 import { Box, Text } from '@mantine/core';
 import { SourceCodeSnippet } from '../mdx/SourceCodeSnippet';
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const TS = require('!!raw-loader!./ColumnOptionsTable.tsx').default;
 
 const ExampleTable = () => {

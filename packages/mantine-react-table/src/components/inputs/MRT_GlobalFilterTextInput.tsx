@@ -1,6 +1,9 @@
 import clsx from 'clsx';
+
 import classes from './MRT_GlobalFilterTextInput.module.css';
+
 import { useEffect, useRef, useState } from 'react';
+
 import {
   ActionIcon,
   Collapse,
@@ -10,6 +13,7 @@ import {
   Tooltip,
 } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
+
 import { type MRT_RowData, type MRT_TableInstance } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';

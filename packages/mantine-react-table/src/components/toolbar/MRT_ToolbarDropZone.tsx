@@ -1,7 +1,11 @@
 import clsx from 'clsx';
+
 import classes from './MRT_ToolbarDropZone.module.css';
+
 import { type DragEvent, useEffect } from 'react';
+
 import { Flex, type FlexProps, Text, Transition } from '@mantine/core';
+
 import { type MRT_RowData, type MRT_TableInstance } from '../../types';
 
 interface Props<TData extends MRT_RowData> extends FlexProps {

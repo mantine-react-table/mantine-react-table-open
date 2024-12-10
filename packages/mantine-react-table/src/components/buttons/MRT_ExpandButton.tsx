@@ -1,12 +1,16 @@
 import clsx from 'clsx';
+
 import classes from './MRT_ExpandButton.module.css';
+
 import { type MouseEvent } from 'react';
+
 import {
   ActionIcon,
   type ActionIconProps,
   Tooltip,
   useDirection,
 } from '@mantine/core';
+
 import {
   type MRT_Row,
   type MRT_RowData,
@@ -54,7 +58,11 @@ export const MRT_ExpandButton = <TData extends MRT_RowData>({
   const canExpand = row.getCanExpand();
   const isExpanded = row.getIsExpanded();
 
-  const DetailPanel = !!renderDetailPanel?.({ row, table, internalEditComponents });
+  const DetailPanel = !!renderDetailPanel?.({
+    internalEditComponents,
+    row,
+    table,
+  });
 
   const handleToggleExpand = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();

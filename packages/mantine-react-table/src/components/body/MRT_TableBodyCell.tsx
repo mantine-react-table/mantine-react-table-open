@@ -1,21 +1,26 @@
 import clsx from 'clsx';
+
 import classes from './MRT_TableBodyCell.module.css';
+
 import {
   type CSSProperties,
   type DragEvent,
+  memo,
   type MouseEvent,
   type RefObject,
-  memo,
   useEffect,
   useState,
 } from 'react';
+
 import {
   Skeleton,
   TableTd,
   type TableTdProps,
   useDirection,
 } from '@mantine/core';
+
 import { MRT_TableBodyCellValue } from './MRT_TableBodyCellValue';
+
 import {
   type MRT_Cell,
   type MRT_CellValue,

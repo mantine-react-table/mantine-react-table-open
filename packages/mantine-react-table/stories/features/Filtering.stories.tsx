@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
+
 import { Button, Checkbox, Flex, Group, SegmentedControl } from '@mantine/core';
+
 import {
+  MantineReactTable,
   type MRT_ColumnDef,
   type MRT_ColumnFiltersState,
   type MRT_FilterTooltipValueFn,
-  MantineReactTable,
 } from '../../src';
-import { faker } from '@faker-js/faker';
-import { type Meta } from '@storybook/react';
 
 import { MRT_Localization_EN } from '../../src/locales/en';
 import { MRT_Localization_JA } from '../../src/locales/ja';
 
+import { faker } from '@faker-js/faker';
+import { type Meta } from '@storybook/react';
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
@@ -28,8 +30,8 @@ export default meta;
 
 const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
   {
-    Cell: ({ cell }) => (cell.getValue() ? 'Yes' : 'No'),
     accessorKey: 'isActive',
+    Cell: ({ cell }) => (cell.getValue() ? 'Yes' : 'No'),
     header: 'Is Active',
     size: 110,
   },
@@ -47,9 +49,9 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
     header: 'Age',
   },
   {
-    Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(), //transform data to readable format for cell render
     accessorFn: (row) => new Date(row.birthDate), //transform data before processing so sorting works
     accessorKey: 'birthDate',
+    Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(), //transform data to readable format for cell render
     filterVariant: 'date',
     header: 'Birth Date',
     sortingFn: 'datetime',
@@ -71,7 +73,7 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
 const data = [...Array(120)].map(() => ({
   address: faker.location.streetAddress(),
   age: faker.number.int(100),
-  birthDate: faker.date.birthdate({ max: 2020, min: 1990, mode: "year" }),
+  birthDate: faker.date.birthdate({ max: 2020, min: 1990, mode: 'year' }),
   firstName: faker.person.firstName(),
   gender: faker.person.sex(),
   hireDate: faker.date.past(),
@@ -117,8 +119,8 @@ export const FilterFnAndFilterVariants = () => (
   <MantineReactTable
     columns={[
       {
-        Cell: ({ cell }) => (cell.getValue() === 'true' ? 'Yes' : 'No'),
         accessorFn: (originalRow) => (originalRow.isActive ? 'true' : 'false'),
+        Cell: ({ cell }) => (cell.getValue() === 'true' ? 'Yes' : 'No'),
         filterVariant: 'checkbox',
         header: 'Is Active',
         id: 'isActive',
@@ -140,12 +142,12 @@ export const FilterFnAndFilterVariants = () => (
         header: 'Age',
       },
       {
+        accessorKey: 'salary',
         Cell: ({ cell }) =>
           cell.getValue<number>().toLocaleString('en-US', {
             currency: 'USD',
             style: 'currency',
           }),
-        accessorKey: 'salary',
         filterVariant: 'range-slider',
         header: 'Salary',
         mantineFilterRangeSliderProps: {
@@ -186,12 +188,12 @@ export const FilterFnAndFilterVariants = () => (
         },
       },
       {
-        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(),
         accessorFn: (row) => {
           const bDay = new Date(row.birthDate);
           bDay.setHours(0, 0, 0, 0); // remove time from date
           return bDay;
         },
+        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(),
         filterVariant: 'date',
         header: 'Birth Date',
         id: 'birthDate',
@@ -199,12 +201,12 @@ export const FilterFnAndFilterVariants = () => (
         sortingFn: 'datetime',
       },
       {
-        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(),
         accessorFn: (row) => {
           const hDay = new Date(row.hireDate);
           hDay.setHours(0, 0, 0, 0); // remove time from date
           return hDay;
         },
+        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(),
         filterVariant: 'date-range',
         header: 'Hire Date',
         id: 'hireDate',
@@ -222,8 +224,8 @@ export const FilterFnAndFilterVariantsPopover = () => (
     columnFilterDisplayMode="popover"
     columns={[
       {
-        Cell: ({ cell }) => (cell.getValue() === 'true' ? 'Yes' : 'No'),
         accessorFn: (originalRow) => (originalRow.isActive ? 'true' : 'false'),
+        Cell: ({ cell }) => (cell.getValue() === 'true' ? 'Yes' : 'No'),
         filterVariant: 'checkbox',
         header: 'Is Active',
         id: 'isActive',
@@ -245,12 +247,12 @@ export const FilterFnAndFilterVariantsPopover = () => (
         header: 'Age',
       },
       {
+        accessorKey: 'salary',
         Cell: ({ cell }) =>
           cell.getValue<number>().toLocaleString('en-US', {
             currency: 'USD',
             style: 'currency',
           }),
-        accessorKey: 'salary',
         filterVariant: 'range-slider',
         header: 'Salary',
         mantineFilterRangeSliderProps: {
@@ -291,12 +293,12 @@ export const FilterFnAndFilterVariantsPopover = () => (
         },
       },
       {
-        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(),
         accessorFn: (row) => {
           const bDay = new Date(row.birthDate);
           bDay.setHours(0, 0, 0, 0); // remove time from date
           return bDay;
         },
+        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(),
         filterVariant: 'date',
         header: 'Birth Date',
         id: 'birthDate',
@@ -304,12 +306,12 @@ export const FilterFnAndFilterVariantsPopover = () => (
         sortingFn: 'datetime',
       },
       {
-        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(),
         accessorFn: (row) => {
           const hDay = new Date(row.hireDate);
           hDay.setHours(0, 0, 0, 0); // remove time from date
           return hDay;
         },
+        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(),
         filterVariant: 'date-range',
         header: 'Hire Date',
         id: 'hireDate',
@@ -373,12 +375,12 @@ export const EnableFilterModes = () => (
         header: 'Age',
       },
       {
+        accessorKey: 'salary',
         Cell: ({ cell }) =>
           cell.getValue<number>().toLocaleString('en-US', {
             currency: 'USD',
             style: 'currency',
           }),
-        accessorKey: 'salary',
         filterVariant: 'range-slider',
         header: 'Salary',
         mantineFilterRangeSliderProps: {
@@ -424,12 +426,12 @@ export const EnableFilterModesPopover = () => (
         header: 'Age',
       },
       {
+        accessorKey: 'salary',
         Cell: ({ cell }) =>
           cell.getValue<number>().toLocaleString('en-US', {
             currency: 'USD',
             style: 'currency',
           }),
-        accessorKey: 'salary',
         filterVariant: 'range-slider',
         header: 'Salary',
         mantineFilterRangeSliderProps: {
@@ -791,30 +793,13 @@ export const CustomTooltipValueFn = () => {
   return (
     <>
       <MantineReactTable
-        renderTopToolbarCustomActions={() => (
-          <Group>
-            <Checkbox
-              label="Enable Custom Tooltip Value Fn"
-              checked={enableValueFns}
-              onChange={(event) =>
-                setEnableValueFns(event.currentTarget.checked)
-              }
-            />
-            <SegmentedControl
-              data={['en', 'ja']}
-              value={locale}
-              onChange={setLocale}
-            />
-          </Group>
-        )}
-        localization={localization}
         columns={[
           {
-            Cell: ({ cell }) => (cell.getValue() === 'true' ? 'Yes' : 'No'),
             accessorFn: (originalRow) =>
               originalRow.isActive ? 'true' : 'false',
-            filterVariant: 'checkbox',
+            Cell: ({ cell }) => (cell.getValue() === 'true' ? 'Yes' : 'No'),
             filterTooltipValueFn: isActiveValueFn, //transform data to readable format for tooltip
+            filterVariant: 'checkbox',
             header: 'Is Active',
             id: 'isActive',
             size: 200,
@@ -828,34 +813,51 @@ export const CustomTooltipValueFn = () => {
             header: 'Last Name',
           },
           {
+            accessorFn: (row) => new Date(row.birthDate), //transform data before processing so sorting works
+            accessorKey: 'birthDate',
             Cell: ({ cell }) => formatDate(cell.getValue<Date>(), 'L'), //transform data to readable format for cell render
+            filterTooltipValueFn: dateValueFn, //transform data to readable format for tooltip
+            filterVariant: 'date',
+            header: 'Birth Date (date)',
             mantineFilterDateInputProps: {
               locale: locale,
               valueFormat: 'L',
             },
-            accessorFn: (row) => new Date(row.birthDate), //transform data before processing so sorting works
-            accessorKey: 'birthDate',
-            filterVariant: 'date',
-            filterTooltipValueFn: dateValueFn, //transform data to readable format for tooltip
-            header: 'Birth Date (date)',
             sortingFn: 'datetime',
           },
           {
+            accessorFn: (row) => new Date(row.birthDate), //transform data before processing so sorting works
+            accessorKey: 'birthDateRange',
             Cell: ({ cell }) => formatDate(cell.getValue<Date>(), 'L'), //transform data to readable format for cell render
+            filterTooltipValueFn: dateValueFn, //transform data to readable format for tooltip
+            filterVariant: 'date-range',
+            header: 'Birth Date (date-range)',
             mantineFilterDateInputProps: {
               locale: locale,
               valueFormat: 'L',
             },
-            accessorFn: (row) => new Date(row.birthDate), //transform data before processing so sorting works
-            accessorKey: 'birthDateRange',
-            filterVariant: 'date-range',
-            filterTooltipValueFn: dateValueFn, //transform data to readable format for tooltip
-            header: 'Birth Date (date-range)',
             sortingFn: 'datetime',
           },
         ]}
         data={data}
+        localization={localization}
         onColumnFiltersChange={setColumnFilters}
+        renderTopToolbarCustomActions={() => (
+          <Group>
+            <Checkbox
+              checked={enableValueFns}
+              label="Enable Custom Tooltip Value Fn"
+              onChange={(event) =>
+                setEnableValueFns(event.currentTarget.checked)
+              }
+            />
+            <SegmentedControl
+              data={['en', 'ja']}
+              onChange={setLocale}
+              value={locale}
+            />
+          </Group>
+        )}
         state={{
           columnFilters,
         }}

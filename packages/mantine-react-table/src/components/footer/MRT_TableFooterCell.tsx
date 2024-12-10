@@ -1,7 +1,11 @@
 import clsx from 'clsx';
+
 import classes from './MRT_TableFooterCell.module.css';
+
 import { type CSSProperties } from 'react';
+
 import { TableTh, type TableThProps, useDirection } from '@mantine/core';
+
 import {
   type MRT_Header,
   type MRT_RowData,

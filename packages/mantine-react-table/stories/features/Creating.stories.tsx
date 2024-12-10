@@ -1,15 +1,18 @@
 import { useState } from 'react';
-import { IconPlus } from '@tabler/icons-react';
-import { Button, ActionIcon, Select } from '@mantine/core';
+
+import { ActionIcon, Button, Select } from '@mantine/core';
+
 import {
-  type MRT_TableOptions,
-  MantineReactTable,
   createRow,
-  MRT_Row,
+  MantineReactTable,
+  type MRT_Row,
+  type MRT_TableOptions,
   useMantineReactTable,
 } from '../../src';
+
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
+import { IconPlus } from '@tabler/icons-react';
 
 const meta: Meta = {
   title: 'Features/Creating Examples',
@@ -300,7 +303,7 @@ export const CreateRowIndexIndexExpanding = () => {
     initialState: { expanded: true },
     onCreatingRowSave: () => {},
     positionCreatingRow: creatingRowIndex,
-    renderRowActions: ({ row, renderedRowIndex, table }) => {
+    renderRowActions: ({ renderedRowIndex, row, table }) => {
       return (
         <ActionIcon
           onClick={() => {
@@ -370,16 +373,16 @@ export const CreateWithCustomEditCell = () => {
       },
       {
         accessorKey: 'state',
-        header: 'State',
         Edit: ({ cell }) => (
           <Select
-            value={cell.getValue<string>()}
             data={[
-              { value: 'Alabama', label: 'Alabama' },
-              { value: 'Alaska', label: 'Alaska' },
+              { label: 'Alabama', value: 'Alabama' },
+              { label: 'Alaska', value: 'Alaska' },
             ]}
+            value={cell.getValue<string>()}
           />
         ),
+        header: 'State',
       },
       {
         accessorKey: 'phoneNumber',
@@ -387,18 +390,18 @@ export const CreateWithCustomEditCell = () => {
         header: 'Phone Number',
       },
     ],
-    state: { creatingRow },
-    onCreatingRowChange: setCreatingRow,
     createDisplayMode: 'row',
     data: tableData,
     editDisplayMode: 'row',
     enableEditing: (row) => row.id === creatingRow?.id,
+    onCreatingRowChange: setCreatingRow,
     onCreatingRowSave: () => {},
     onEditingRowSave: handleSaveRow,
     positionCreatingRow: 'top',
     renderTopToolbarCustomActions: ({ table }) => (
       <Button onClick={() => table.setCreatingRow(true)}>Add</Button>
     ),
+    state: { creatingRow },
   });
 
   return <MantineReactTable table={table} />;

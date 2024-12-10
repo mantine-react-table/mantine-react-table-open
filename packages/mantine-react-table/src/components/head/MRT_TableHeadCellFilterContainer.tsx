@@ -1,4 +1,5 @@
 import classes from './MRT_TableHeadCellFilterContainer.module.css';
+
 import {
   ActionIcon,
   Collapse,
@@ -8,6 +9,7 @@ import {
   Text,
   Tooltip,
 } from '@mantine/core';
+
 import { localizedFilterOption } from '../../fns/filterFns';
 import {
   type MRT_Header,

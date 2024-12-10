@@ -1,7 +1,11 @@
 import clsx from 'clsx';
+
 import classes from './MRT_FilterRangeSlider.module.css';
+
 import { useEffect, useRef, useState } from 'react';
+
 import { RangeSlider, type RangeSliderProps } from '@mantine/core';
+
 import {
   type MRT_Header,
   type MRT_RowData,

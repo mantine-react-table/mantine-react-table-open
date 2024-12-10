@@ -1,4 +1,5 @@
 import { type ChangeEvent, type MouseEvent } from 'react';
+
 import { rankGlobalFuzzy } from '../fns/sortingFns';
 import {
   type MRT_Row,
@@ -250,9 +251,11 @@ export const getMRT_SelectAllHandler =
       refs: { lastSelectedRowId },
     } = table;
 
-    selectAllMode === 'all' || forceAll
-      ? table.toggleAllRowsSelected(value ?? (event as any).target.checked)
-      : table.toggleAllPageRowsSelected(value ?? (event as any).target.checked);
+    if (selectAllMode === 'all' || forceAll) {
+      table.toggleAllRowsSelected(value ?? (event as any).target.checked);
+    } else {
+      table.toggleAllPageRowsSelected(value ?? (event as any).target.checked);
+    }
     if (enableRowPinning && rowPinningDisplayMode?.includes('select')) {
       table.setRowPinning({ bottom: [], top: [] });
     }

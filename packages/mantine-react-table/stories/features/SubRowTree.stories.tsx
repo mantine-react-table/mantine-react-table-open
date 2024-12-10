@@ -1,6 +1,9 @@
 import { DirectionProvider } from '@mantine/core';
-import { type MRT_ColumnDef, MantineReactTable } from '../../src';
+
+import { MantineReactTable, type MRT_ColumnDef } from '../../src';
+
 import { MRT_Localization_HE } from '../../src/locales/he';
+
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
 

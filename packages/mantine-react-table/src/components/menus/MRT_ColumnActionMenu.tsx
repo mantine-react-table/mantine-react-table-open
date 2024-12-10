@@ -1,5 +1,7 @@
 import classes from './MRT_ColumnActionMenu.module.css';
+
 import { ActionIcon, Menu, type MenuProps, Tooltip } from '@mantine/core';
+
 import {
   type MRT_Header,
   type MRT_RowData,

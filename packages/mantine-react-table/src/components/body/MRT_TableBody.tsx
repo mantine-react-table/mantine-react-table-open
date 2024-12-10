@@ -1,14 +1,20 @@
 import clsx from 'clsx';
+
 import classes from './MRT_TableBody.module.css';
+
 import { memo, useMemo } from 'react';
+
 import {
   type TableProps,
   TableTbody,
   type TableTbodyProps,
 } from '@mantine/core';
-import { MRT_TableBodyRow, Memo_MRT_TableBodyRow } from './MRT_TableBodyRow';
-import { useMRT_RowVirtualizer } from '../../hooks/useMRT_RowVirtualizer';
+
+import { MRT_TableBodyEmptyRow } from './MRT_TableBodyEmptyRow';
+import { Memo_MRT_TableBodyRow, MRT_TableBodyRow } from './MRT_TableBodyRow';
+
 import { useMRT_Rows } from '../../hooks/useMRT_Rows';
+import { useMRT_RowVirtualizer } from '../../hooks/useMRT_RowVirtualizer';
 import {
   type MRT_ColumnVirtualizer,
   type MRT_Row,
@@ -17,7 +23,6 @@ import {
   type MRT_VirtualItem,
 } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
-import { MRT_TableBodyEmptyRow } from './MRT_TableBodyEmptyRow';
 
 export interface MRT_TableBodyProps<TData extends MRT_RowData>
   extends TableTbodyProps {

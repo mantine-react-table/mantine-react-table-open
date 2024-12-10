@@ -2,7 +2,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:perfectionist/recommended-natural"
+    "plugin:perfectionist/recommended-natural-legacy",
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "perfectionist"],
@@ -17,8 +17,8 @@
       {
         "prefer": "type-imports",
         "disallowTypeAnnotations": true,
-        "fixStyle": "inline-type-imports"
-      }
+        "fixStyle": "inline-type-imports",
+      },
     ],
     "perfectionist/sort-imports": [
       "warn",
@@ -32,12 +32,9 @@
           "tanstack",
           "mantine",
           "mrt",
-          "siblings",
-          "sibling-type",
-          "parent",
-          "parent-type"
+          ["sibling", "sibling-type", "parent", "parent-type"]
         ],
-        "custom-groups": {
+        "customGroups": {
           "value": {
             "clsx": "clsx",
             "style": ["./**.module.css"],
@@ -46,16 +43,15 @@
             "tanstack": "@tanstack/**",
             "mantine": "@mantine/**",
             "mrt": ["./MRT_**", "../**MRT_**", "../../src"],
-            "faker": "@faker/**"
+            "faker": "@faker/**",
           },
           "type": {
-            "react": "react"
-          }
+            "react": "react",
+          },
         },
-        "newlines-between": "never"
-      }
-    ]
+      },
+    ],
   },
   "root": true,
-  "ignorePatterns": ["dist/", "locales/", "node_modules/"]
+  "ignorePatterns": ["dist/", "locales/", "node_modules/"],
 }

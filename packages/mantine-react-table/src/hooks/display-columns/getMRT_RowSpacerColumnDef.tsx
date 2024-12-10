@@ -1,4 +1,5 @@
 import { MRT_DefaultDisplayColumn } from '../useMRT_TableOptions';
+
 import {
   type MRT_ColumnDef,
   type MRT_RowData,

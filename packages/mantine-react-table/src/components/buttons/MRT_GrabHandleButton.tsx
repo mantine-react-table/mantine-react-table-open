@@ -1,7 +1,11 @@
 import clsx from 'clsx';
+
 import classes from './MRT_GrabHandleButton.module.css';
+
 import { type DragEventHandler } from 'react';
+
 import { ActionIcon, type ActionIconProps, Tooltip } from '@mantine/core';
+
 import {
   type HTMLPropsRef,
   type MRT_RowData,
@@ -42,13 +46,13 @@ export const MRT_GrabHandleButton = <TData extends MRT_RowData>({
           actionIconProps?.className,
         )}
         color="gray"
-        size="sm"
         onClick={(e) => {
           e.stopPropagation();
           actionIconProps?.onClick?.(e);
         }}
         onDragEnd={onDragEnd}
         onDragStart={onDragStart}
+        size="sm"
         title={undefined}
         variant="transparent"
       >

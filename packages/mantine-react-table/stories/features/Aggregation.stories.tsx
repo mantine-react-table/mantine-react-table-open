@@ -1,9 +1,11 @@
 import { Box, Stack } from '@mantine/core';
+
 import {
+  MantineReactTable,
   MRT_AggregationFns,
   type MRT_ColumnDef,
-  MantineReactTable,
 } from '../../src';
+
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
 
@@ -39,6 +41,7 @@ const columns = [
     header: 'Last Name',
   },
   {
+    accessorKey: 'age',
     AggregatedCell: ({ cell, table }) => (
       <>
         Max by{' '}
@@ -48,21 +51,20 @@ const columns = [
         </Box>
       </>
     ),
+    aggregationFn: 'max',
     Footer: () => (
       <Stack>
         Average Age:
         <Box color="orange">{Math.round(averageAge)}</Box>
       </Stack>
     ),
-    accessorKey: 'age',
-    aggregationFn: 'max',
     header: 'Age',
   },
   {
+    accessorKey: 'gender',
     GroupedCell: ({ cell }) => (
       <Box style={{ color: 'primary.main' }}>{cell.getValue<string>()}</Box>
     ),
-    accessorKey: 'gender',
     header: 'Gender',
   },
   {
@@ -70,6 +72,7 @@ const columns = [
     header: 'State',
   },
   {
+    accessorKey: 'salary',
     AggregatedCell: ({ cell, table }) => (
       <>
         Average by{' '}
@@ -84,6 +87,7 @@ const columns = [
         </Box>
       </>
     ),
+    aggregationFn: 'mean',
     Cell: ({ cell }) => (
       <>
         {cell.getValue<number>()?.toLocaleString?.('en-US', {
@@ -94,6 +98,7 @@ const columns = [
         })}
       </>
     ),
+    enableGrouping: false,
     Footer: () => (
       <Stack>
         Average Salary:
@@ -107,9 +112,6 @@ const columns = [
         </Box>
       </Stack>
     ),
-    accessorKey: 'salary',
-    aggregationFn: 'mean',
-    enableGrouping: false,
     header: 'Salary',
   },
 ] as MRT_ColumnDef<(typeof data)[0]>[];
@@ -155,6 +157,7 @@ export const MultiAggregationPerColumn = () => (
         header: 'Last Name',
       },
       {
+        accessorKey: 'age',
         AggregatedCell: ({ cell, table }) => (
           <>
             Min by{' '}
@@ -172,25 +175,24 @@ export const MultiAggregationPerColumn = () => (
             </Box>
           </>
         ),
+        //manually set multiple aggregation functions
+        aggregationFn: (columnId, leafRows: any, childRows: any) => [
+          MRT_AggregationFns.min(columnId, leafRows, childRows),
+          MRT_AggregationFns.max(columnId, leafRows, childRows),
+        ],
         Footer: () => (
           <Stack>
             Average Age:
             <Box color="orange">{Math.round(averageAge)}</Box>
           </Stack>
         ),
-        accessorKey: 'age',
-        //manually set multiple aggregation functions
-        aggregationFn: (columnId, leafRows: any, childRows: any) => [
-          MRT_AggregationFns.min(columnId, leafRows, childRows),
-          MRT_AggregationFns.max(columnId, leafRows, childRows),
-        ],
         header: 'Age',
       },
       {
+        accessorKey: 'gender',
         GroupedCell: ({ cell }) => (
           <Box style={{ color: 'primary.main' }}>{cell.getValue<string>()}</Box>
         ),
-        accessorKey: 'gender',
         header: 'Gender',
       },
       {
@@ -198,6 +200,7 @@ export const MultiAggregationPerColumn = () => (
         header: 'State',
       },
       {
+        accessorKey: 'salary',
         AggregatedCell: ({ cell, table }) => (
           <>
             Count:{' '}
@@ -221,6 +224,7 @@ export const MultiAggregationPerColumn = () => (
             </Box>
           </>
         ),
+        aggregationFn: ['count', 'mean'], //multiple aggregation functions
         Cell: ({ cell }) => (
           <>
             {cell.getValue<number>()?.toLocaleString?.('en-US', {
@@ -231,6 +235,7 @@ export const MultiAggregationPerColumn = () => (
             })}
           </>
         ),
+        enableGrouping: false,
         Footer: () => (
           <Stack>
             Average Salary:
@@ -244,9 +249,6 @@ export const MultiAggregationPerColumn = () => (
             </Box>
           </Stack>
         ),
-        accessorKey: 'salary',
-        aggregationFn: ['count', 'mean'], //multiple aggregation functions
-        enableGrouping: false,
         header: 'Salary',
       },
     ]}

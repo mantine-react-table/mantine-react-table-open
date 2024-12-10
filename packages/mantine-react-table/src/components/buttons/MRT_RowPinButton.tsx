@@ -1,6 +1,9 @@
 import { type MouseEvent, useState } from 'react';
+
 import { type RowPinningPosition } from '@tanstack/react-table';
+
 import { ActionIcon, type ActionIconProps, Tooltip } from '@mantine/core';
+
 import {
   type MRT_Row,
   type MRT_RowData,

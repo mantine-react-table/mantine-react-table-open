@@ -1,7 +1,11 @@
 import clsx from 'clsx';
+
 import classes from './MRT_FilterRangeFields.module.css';
+
 import { Box, type BoxProps } from '@mantine/core';
+
 import { MRT_FilterTextInput } from './MRT_FilterTextInput';
+
 import {
   type MRT_Header,
   type MRT_RowData,

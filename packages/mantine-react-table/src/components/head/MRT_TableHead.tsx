@@ -1,12 +1,16 @@
 import clsx from 'clsx';
+
 import classes from './MRT_TableHead.module.css';
+
 import {
   TableTh,
   TableThead,
   type TableTheadProps,
   TableTr,
 } from '@mantine/core';
+
 import { MRT_TableHeadRow } from './MRT_TableHeadRow';
+
 import {
   type MRT_ColumnVirtualizer,
   type MRT_RowData,

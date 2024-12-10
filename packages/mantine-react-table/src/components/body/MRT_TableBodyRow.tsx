@@ -1,14 +1,19 @@
 import clsx from 'clsx';
+
 import classes from './MRT_TableBodyRow.module.css';
+
 import { type DragEvent, memo, useMemo, useRef } from 'react';
+
 import {
   Box,
   type TableProps,
   TableTr,
   type TableTrProps,
 } from '@mantine/core';
-import { MRT_TableBodyCell, Memo_MRT_TableBodyCell } from './MRT_TableBodyCell';
+
+import { Memo_MRT_TableBodyCell, MRT_TableBodyCell } from './MRT_TableBodyCell';
 import { MRT_TableDetailPanel } from './MRT_TableDetailPanel';
+
 import {
   type MRT_Cell,
   type MRT_ColumnVirtualizer,
@@ -190,37 +195,39 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
         {virtualPaddingLeft ? (
           <Box component="td" display="flex" w={virtualPaddingLeft} />
         ) : null}
-        {children ? children : (virtualColumns ?? row.getVisibleCells()).map(
-          (cellOrVirtualCell, renderedColumnIndex) => {
-            let cell = cellOrVirtualCell as MRT_Cell<TData>;
-            if (columnVirtualizer) {
-              renderedColumnIndex = (cellOrVirtualCell as MRT_VirtualItem)
-                .index;
-              cell = visibleCells[renderedColumnIndex];
-            }
-            const cellProps = {
-              cell,
-              numRows,
-              renderedColumnIndex,
-              renderedRowIndex,
-              rowRef,
-              table,
-              virtualCell: columnVirtualizer
-                ? (cellOrVirtualCell as MRT_VirtualItem)
-                : undefined,
-            };
-            return memoMode === 'cells' &&
-              cell.column.columnDef.columnDefType === 'data' &&
-              !draggingColumn &&
-              !draggingRow &&
-              editingCell?.id !== cell.id &&
-              editingRow?.id !== row.id ? (
-              <Memo_MRT_TableBodyCell key={cell.id} {...cellProps} />
-            ) : (
-              <MRT_TableBodyCell key={cell.id} {...cellProps} />
-            );
-          },
-        )}
+        {children
+          ? children
+          : (virtualColumns ?? row.getVisibleCells()).map(
+              (cellOrVirtualCell, renderedColumnIndex) => {
+                let cell = cellOrVirtualCell as MRT_Cell<TData>;
+                if (columnVirtualizer) {
+                  renderedColumnIndex = (cellOrVirtualCell as MRT_VirtualItem)
+                    .index;
+                  cell = visibleCells[renderedColumnIndex];
+                }
+                const cellProps = {
+                  cell,
+                  numRows,
+                  renderedColumnIndex,
+                  renderedRowIndex,
+                  rowRef,
+                  table,
+                  virtualCell: columnVirtualizer
+                    ? (cellOrVirtualCell as MRT_VirtualItem)
+                    : undefined,
+                };
+                return memoMode === 'cells' &&
+                  cell.column.columnDef.columnDefType === 'data' &&
+                  !draggingColumn &&
+                  !draggingRow &&
+                  editingCell?.id !== cell.id &&
+                  editingRow?.id !== row.id ? (
+                  <Memo_MRT_TableBodyCell key={cell.id} {...cellProps} />
+                ) : (
+                  <MRT_TableBodyCell key={cell.id} {...cellProps} />
+                );
+              },
+            )}
         {virtualPaddingRight ? (
           <Box component="td" display="flex" w={virtualPaddingRight} />
         ) : null}

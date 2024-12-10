@@ -1,7 +1,11 @@
 import clsx from 'clsx';
+
 import classes from './MRT_TableHeadRow.module.css';
+
 import { Box, TableTr, type TableTrProps } from '@mantine/core';
+
 import { MRT_TableHeadCell } from './MRT_TableHeadCell';
+
 import {
   type MRT_ColumnVirtualizer,
   type MRT_Header,

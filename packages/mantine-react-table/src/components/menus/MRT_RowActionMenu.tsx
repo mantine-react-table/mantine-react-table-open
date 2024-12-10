@@ -1,5 +1,7 @@
 import { type MouseEvent } from 'react';
+
 import { ActionIcon, type ActionIconProps, Menu, Tooltip } from '@mantine/core';
+
 import {
   type MRT_Row,
   type MRT_RowData,

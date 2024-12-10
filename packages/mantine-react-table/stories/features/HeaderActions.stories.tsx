@@ -1,4 +1,5 @@
-import { type MRT_ColumnDef, MantineReactTable } from '../../src';
+import { MantineReactTable, type MRT_ColumnDef } from '../../src';
+
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
 
@@ -101,10 +102,10 @@ export const HeaderActionsEnabledWithFeatures = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    enableHeaderActionsHoverReveal
     enableColumnOrdering
     enableColumnPinning
     enableColumnResizing
+    enableHeaderActionsHoverReveal
     enableRowNumbers
     enableRowSelection
   />
@@ -119,10 +120,10 @@ export const HeaderActionsEnabledWithFeaturesCenterAlign = () => (
         align: 'center',
       },
     }}
-    enableHeaderActionsHoverReveal
     enableColumnOrdering
     enableColumnPinning
     enableColumnResizing
+    enableHeaderActionsHoverReveal
     enableRowNumbers
     enableRowSelection
   />
@@ -137,10 +138,10 @@ export const HeaderActionsEnabledWithFeaturesRightAlign = () => (
         align: 'right',
       },
     }}
-    enableHeaderActionsHoverReveal
     enableColumnOrdering
     enableColumnPinning
     enableColumnResizing
+    enableHeaderActionsHoverReveal
     enableRowNumbers
     enableRowSelection
   />

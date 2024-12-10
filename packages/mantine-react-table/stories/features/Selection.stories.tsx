@@ -1,11 +1,14 @@
 import { useState } from 'react';
+
 import { Button, Flex } from '@mantine/core';
+
 import {
+  getMRT_RowSelectionHandler,
+  MantineReactTable,
   type MRT_ColumnDef,
   MRT_SelectCheckbox,
-  MantineReactTable,
-  getMRT_RowSelectionHandler,
 } from '../../src';
+
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
 import { IconSend, IconTrash } from '@tabler/icons-react';

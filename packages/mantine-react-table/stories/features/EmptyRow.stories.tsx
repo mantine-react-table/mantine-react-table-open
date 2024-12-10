@@ -1,13 +1,16 @@
-import { useContextMenu } from 'mantine-contextmenu';
+import { useState } from 'react';
+
+import { Center, Flex, Group, Stack, Switch, Text } from '@mantine/core';
+
 import {
+  MantineReactTable,
   type MRT_ColumnDef,
   MRT_EditActionButtons,
-  MantineReactTable,
   useMantineReactTable,
 } from '../../src';
-import { Center, Flex, Group, Stack, Text, Switch } from '@mantine/core';
+
 import { type Meta } from '@storybook/react';
-import { useState } from 'react';
+import { useContextMenu } from 'mantine-contextmenu';
 
 const meta: Meta = {
   title: 'Features/Empty Row Examples',
@@ -16,10 +19,10 @@ const meta: Meta = {
 export default meta;
 
 type Person = {
-  firstName: string;
-  lastName: string;
   address?: string;
   city?: string;
+  firstName: string;
+  lastName: string;
 };
 
 const data: Person[] = [];
@@ -74,8 +77,8 @@ export const EmptyRowContextMenu = () => {
       onContextMenu: showContextMenu([
         {
           key: 'add',
-          title: 'Insert new row',
           onClick: () => console.log('Insert new row'),
+          title: 'Insert new row',
         },
         {
           key: 'download',

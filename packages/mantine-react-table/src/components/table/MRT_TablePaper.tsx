@@ -1,7 +1,11 @@
 import clsx from 'clsx';
+
 import classes from './MRT_TablePaper.module.css';
+
 import { Paper, type PaperProps } from '@mantine/core';
+
 import { MRT_TableContainer } from './MRT_TableContainer';
+
 import { type MRT_RowData, type MRT_TableInstance } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 import { MRT_BottomToolbar } from '../toolbar/MRT_BottomToolbar';

@@ -1,7 +1,11 @@
 import clsx from 'clsx';
+
 import classes from './MRT_TableDetailPanel.module.css';
+
 import { type RefObject } from 'react';
+
 import { Collapse, TableTd, type TableTdProps, TableTr } from '@mantine/core';
+
 import {
   type MRT_Row,
   type MRT_RowData,
@@ -66,7 +70,9 @@ export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
     ));
 
   const DetailPanel =
-    !isLoading && row.getIsExpanded() && renderDetailPanel?.({ row, table, internalEditComponents });
+    !isLoading &&
+    row.getIsExpanded() &&
+    renderDetailPanel?.({ internalEditComponents, row, table });
 
   return (
     <TableTr

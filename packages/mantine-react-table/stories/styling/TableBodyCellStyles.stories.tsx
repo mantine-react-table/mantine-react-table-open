@@ -1,4 +1,5 @@
-import { type MRT_ColumnDef, MantineReactTable } from '../../src';
+import { MantineReactTable, type MRT_ColumnDef } from '../../src';
+
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
 
@@ -90,20 +91,21 @@ export const CustomCellRender = () => (
   <MantineReactTable
     columns={[
       {
+        accessorKey: 'firstName',
         Cell: ({ cell }) => (
           <span style={{ fontStyle: 'italic' }}>{cell.getValue<string>()}</span>
         ),
-        accessorKey: 'firstName',
         header: 'First Name',
       },
       {
+        accessorKey: 'lastName',
         Cell: ({ cell }) => (
           <span style={{ color: 'red' }}>{cell.getValue<string>()}</span>
         ),
-        accessorKey: 'lastName',
         header: 'Last Name',
       },
       {
+        accessorKey: 'age',
         Cell: ({ cell }) => (
           <span
             style={{
@@ -118,7 +120,6 @@ export const CustomCellRender = () => (
             {cell.getValue<string>()}
           </span>
         ),
-        accessorKey: 'age',
         header: 'Age',
       },
       {

@@ -1,9 +1,11 @@
 import { ActionIcon, Box, Button, Title, Tooltip } from '@mantine/core';
+
 import {
+  MantineReactTable,
   type MRT_ColumnDef,
   MRT_ToggleFullScreenButton,
-  MantineReactTable,
 } from '../../src';
+
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
 import { IconPlus, IconTrash } from '@tabler/icons-react';

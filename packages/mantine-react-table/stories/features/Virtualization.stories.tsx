@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
+
 import { Modal } from '@mantine/core';
-import { type MRT_ColumnDef, MantineReactTable } from '../../src';
+
+import { MantineReactTable, type MRT_ColumnDef } from '../../src';
+
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
 

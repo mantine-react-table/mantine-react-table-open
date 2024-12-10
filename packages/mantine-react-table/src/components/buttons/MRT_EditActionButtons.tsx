@@ -1,6 +1,9 @@
 import clsx from 'clsx';
+
 import classes from './MRT_EditActionButtons.module.css';
+
 import { ActionIcon, Box, type BoxProps, Button, Tooltip } from '@mantine/core';
+
 import {
   type MRT_Row,
   type MRT_RowData,

@@ -1,6 +1,9 @@
 import clsx from 'clsx';
+
 import classes from './MRT_ProgressBar.module.css';
+
 import { Collapse, Progress, type ProgressProps } from '@mantine/core';
+
 import { type MRT_RowData, type MRT_TableInstance } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 

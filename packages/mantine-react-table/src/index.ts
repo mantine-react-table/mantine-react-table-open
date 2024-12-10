@@ -1,39 +1,17 @@
-export * from './types';
-
-//helpers
-export * from './utils/tanstack.helpers';
-export * from './utils/column.utils';
-export * from './utils/displayColumn.utils';
-export * from './utils/row.utils';
-export * from './utils/style.utils';
-
-//fns
-export * from './fns/aggregationFns';
-export * from './fns/filterFns';
-export * from './fns/sortingFns';
-
-//hooks
-export * from './hooks/useMantineReactTable';
-export * from './hooks/useMRT_ColumnVirtualizer';
-export * from './hooks/useMRT_Effects';
-export * from './hooks/useMRT_RowVirtualizer';
-export * from './hooks/useMRT_Rows';
-export * from './hooks/useMRT_TableInstance';
-export * from './hooks/useMRT_TableOptions';
-
-//components
-export * from './components/MantineReactTable';
 //body components
 export * from './components/body/MRT_TableBody';
+
 export * from './components/body/MRT_TableBodyCell';
 export * from './components/body/MRT_TableBodyCellValue';
 export * from './components/body/MRT_TableBodyEmptyRow';
 export * from './components/body/MRT_TableBodyRow';
 export * from './components/body/MRT_TableBodyRowGrabHandle';
+
 export * from './components/body/MRT_TableBodyRowPinButton';
 export * from './components/body/MRT_TableDetailPanel';
 //button components
 export * from './components/buttons/MRT_ColumnPinningButtons';
+
 export * from './components/buttons/MRT_CopyButton';
 export * from './components/buttons/MRT_EditActionButtons';
 export * from './components/buttons/MRT_ExpandAllButton';
@@ -41,6 +19,7 @@ export * from './components/buttons/MRT_ExpandButton';
 export * from './components/buttons/MRT_GrabHandleButton';
 export * from './components/buttons/MRT_RowPinButton';
 export * from './components/buttons/MRT_ShowHideColumnsButton';
+
 export * from './components/buttons/MRT_ToggleDensePaddingButton';
 export * from './components/buttons/MRT_ToggleFiltersButton';
 export * from './components/buttons/MRT_ToggleFullScreenButton';
@@ -67,6 +46,8 @@ export * from './components/inputs/MRT_FilterRangeSlider';
 export * from './components/inputs/MRT_FilterTextInput';
 export * from './components/inputs/MRT_GlobalFilterTextInput';
 export * from './components/inputs/MRT_SelectCheckbox';
+//components
+export * from './components/MantineReactTable';
 //menu components
 export * from './components/menus/MRT_ColumnActionMenu';
 export * from './components/menus/MRT_FilterOptionMenu';
@@ -87,3 +68,22 @@ export * from './components/toolbar/MRT_ToolbarAlertBanner';
 export * from './components/toolbar/MRT_ToolbarDropZone';
 export * from './components/toolbar/MRT_ToolbarInternalButtons';
 export * from './components/toolbar/MRT_TopToolbar';
+//fns
+export * from './fns/aggregationFns';
+export * from './fns/filterFns';
+export * from './fns/sortingFns';
+//hooks
+export * from './hooks/useMantineReactTable';
+export * from './hooks/useMRT_ColumnVirtualizer';
+export * from './hooks/useMRT_Effects';
+export * from './hooks/useMRT_Rows';
+export * from './hooks/useMRT_RowVirtualizer';
+export * from './hooks/useMRT_TableInstance';
+export * from './hooks/useMRT_TableOptions';
+export * from './types';
+export * from './utils/column.utils';
+export * from './utils/displayColumn.utils';
+export * from './utils/row.utils';
+export * from './utils/style.utils';
+//helpers
+export * from './utils/tanstack.helpers';

@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
+
 import {
+  MantineReactTable,
   type MRT_Column,
   type MRT_ColumnDef,
-  MantineReactTable,
 } from '../../src';
+
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
 
@@ -178,10 +180,10 @@ export const ColumnGroupingEnabledCustomAggregate = () => (
         header: 'Last Name',
       },
       {
+        accessorKey: 'gender',
         AggregatedCell: ({ cell }) => (
           <div style={{ color: 'red' }}>{cell.renderValue() as string}</div>
         ),
-        accessorKey: 'gender',
         header: 'Gender',
       },
       {

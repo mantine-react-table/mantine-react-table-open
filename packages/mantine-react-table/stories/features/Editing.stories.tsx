@@ -1,14 +1,17 @@
 import { useState } from 'react';
-import { Center, Flex, Group, Stack, Switch, Title, Text } from '@mantine/core';
+
+import { Center, Flex, Group, Stack, Switch, Text, Title } from '@mantine/core';
+
 import {
+  MantineReactTable,
   type MRT_Cell,
+  type MRT_ColumnDef,
   type MRT_ColumnOrderState,
   MRT_EditActionButtons,
   type MRT_TableOptions,
-  MantineReactTable,
-  MRT_ColumnDef,
   useMantineReactTable,
 } from '../../src';
+
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
 
@@ -383,13 +386,13 @@ const multiSelectColumns: MRT_ColumnDef<Person>[] = [
   },
   {
     accessorKey: 'visitedStates',
+    Cell: ({ cell }) => {
+      return (cell.getValue() as string[]).join(', ');
+    },
     editVariant: 'multi-select',
     header: 'Visited States',
     mantineEditSelectProps: {
       data: usStates as any,
-    },
-    Cell: ({ cell }) => {
-      return (cell.getValue() as string[]).join(', ');
     },
   },
   {
@@ -1270,7 +1273,7 @@ export const EditingInDetailPannel = () => {
   const table = useMantineReactTable({
     columns,
     data: withData ? data : [],
-    renderDetailPanel: ({ table, row, internalEditComponents }) => (
+    renderDetailPanel: ({ internalEditComponents, row, table }) => (
       <Center>
         <form onSubmit={(e) => e.preventDefault()}>
           <Group gap="md" pb={24} pt={16}>
