@@ -73,7 +73,7 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
 const data = [...Array(120)].map(() => ({
   address: faker.location.streetAddress(),
   age: faker.number.int(100),
-  birthDate: faker.date.birthdate({ max: 2020, min: 1990, mode: "year" }),
+  birthDate: faker.date.birthdate({ max: 2020, min: 1990, mode: 'year' }),
   firstName: faker.person.firstName(),
   gender: faker.person.sex(),
   hireDate: faker.date.past(),

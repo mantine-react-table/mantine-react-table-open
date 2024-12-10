@@ -58,7 +58,11 @@ export const MRT_ExpandButton = <TData extends MRT_RowData>({
   const canExpand = row.getCanExpand();
   const isExpanded = row.getIsExpanded();
 
-  const DetailPanel = !!renderDetailPanel?.({ internalEditComponents, row, table });
+  const DetailPanel = !!renderDetailPanel?.({
+    internalEditComponents,
+    row,
+    table,
+  });
 
   const handleToggleExpand = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();

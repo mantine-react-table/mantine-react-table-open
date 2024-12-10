@@ -70,7 +70,9 @@ export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
     ));
 
   const DetailPanel =
-    !isLoading && row.getIsExpanded() && renderDetailPanel?.({ internalEditComponents, row, table });
+    !isLoading &&
+    row.getIsExpanded() &&
+    renderDetailPanel?.({ internalEditComponents, row, table });
 
   return (
     <TableTr

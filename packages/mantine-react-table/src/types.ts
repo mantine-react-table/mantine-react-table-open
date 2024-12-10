@@ -341,36 +341,32 @@ export type MRT_TableInstance<TData extends MRT_RowData> = {
 export type MRT_DefinedTableOptions<TData extends MRT_RowData> = {
   icons: MRT_Icons;
   localization: MRT_Localization;
-} & Omit<
-  MRT_TableOptions<TData>,
-  'icons' | 'localization'
->;
+} & Omit<MRT_TableOptions<TData>, 'icons' | 'localization'>;
 
-export type MRT_StatefulTableOptions<TData extends MRT_RowData> =
-  {
-    state: Pick<
-      MRT_TableState<TData>,
-      | 'columnFilterFns'
-      | 'columnOrder'
-      | 'columnSizingInfo'
-      | 'creatingRow'
-      | 'density'
-      | 'draggingColumn'
-      | 'draggingRow'
-      | 'editingCell'
-      | 'editingRow'
-      | 'globalFilterFn'
-      | 'grouping'
-      | 'hoveredColumn'
-      | 'hoveredRow'
-      | 'isFullScreen'
-      | 'pagination'
-      | 'showAlertBanner'
-      | 'showColumnFilters'
-      | 'showGlobalFilter'
-      | 'showToolbarDropZone'
-    >;
-  } & MRT_DefinedTableOptions<TData>;
+export type MRT_StatefulTableOptions<TData extends MRT_RowData> = {
+  state: Pick<
+    MRT_TableState<TData>,
+    | 'columnFilterFns'
+    | 'columnOrder'
+    | 'columnSizingInfo'
+    | 'creatingRow'
+    | 'density'
+    | 'draggingColumn'
+    | 'draggingRow'
+    | 'editingCell'
+    | 'editingRow'
+    | 'globalFilterFn'
+    | 'grouping'
+    | 'hoveredColumn'
+    | 'hoveredRow'
+    | 'isFullScreen'
+    | 'pagination'
+    | 'showAlertBanner'
+    | 'showColumnFilters'
+    | 'showGlobalFilter'
+    | 'showToolbarDropZone'
+  >;
+} & MRT_DefinedTableOptions<TData>;
 
 export type MRT_TableState<TData extends MRT_RowData> = Prettify<
   {
@@ -661,10 +657,9 @@ export type MRT_DisplayColumnDef<
   TValue = unknown,
 > = Omit<MRT_ColumnDef<TData, TValue>, 'accessorFn' | 'accessorKey'>;
 
-export type MRT_GroupColumnDef<TData extends MRT_RowData> =
-  {
-    columns: MRT_ColumnDef<TData>[];
-  } & MRT_DisplayColumnDef<TData, any>;
+export type MRT_GroupColumnDef<TData extends MRT_RowData> = {
+  columns: MRT_ColumnDef<TData>[];
+} & MRT_DisplayColumnDef<TData, any>;
 
 export type MRT_DefinedColumnDef<
   TData extends MRT_RowData,
@@ -688,17 +683,11 @@ export type MRT_Column<TData extends MRT_RowData, TValue = unknown> = {
 
 export type MRT_Header<TData extends MRT_RowData, TValue = unknown> = {
   column: MRT_Column<TData, TValue>;
-} & Omit<
-  Header<TData, MRT_CellValue>,
-  'column'
->;
+} & Omit<Header<TData, MRT_CellValue>, 'column'>;
 
 export type MRT_HeaderGroup<TData extends MRT_RowData> = {
   headers: MRT_Header<TData>[];
-} & Omit<
-  HeaderGroup<TData>,
-  'headers'
->;
+} & Omit<HeaderGroup<TData>, 'headers'>;
 
 export type MRT_Row<TData extends MRT_RowData> = {
   _valuesCache: Record<LiteralUnion<DeepKeys<TData> & string>, any>;
@@ -713,10 +702,7 @@ export type MRT_Row<TData extends MRT_RowData> = {
 export type MRT_Cell<TData extends MRT_RowData, TValue = unknown> = {
   column: MRT_Column<TData, TValue>;
   row: MRT_Row<TData>;
-} & Omit<
-  Cell<TData, TValue>,
-  'column' | 'row'
->;
+} & Omit<Cell<TData, TValue>, 'column' | 'row'>;
 
 export type MRT_AggregationOption = keyof typeof MRT_AggregationFns & string;
 

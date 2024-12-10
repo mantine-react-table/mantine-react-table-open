@@ -183,7 +183,7 @@ export const SourceCodeSnippet = ({
                         setColorScheme(
                           value?.startsWith('dark') ? 'dark' : 'light',
                         );
-                        
+
                         if (value === 'darkDark') {
                           setDarkDark(true);
                         } else {

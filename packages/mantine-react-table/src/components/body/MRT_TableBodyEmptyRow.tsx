@@ -6,7 +6,12 @@ import { useMemo } from 'react';
 
 import { createRow } from '@tanstack/react-table';
 
-import { type TableProps, TableTd, type TableTrProps, Text } from '@mantine/core';
+import {
+  type TableProps,
+  TableTd,
+  type TableTrProps,
+  Text,
+} from '@mantine/core';
 
 import { MRT_TableBodyRow } from './MRT_TableBodyRow';
 

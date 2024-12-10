@@ -1,8 +1,6 @@
 import { Button, Container } from '@mantine/core';
 
-import {
-  MantineReactTable, useMantineReactTable
-} from '../../src';
+import { MantineReactTable, useMantineReactTable } from '../../src';
 
 import { type Meta } from '@storybook/react';
 
