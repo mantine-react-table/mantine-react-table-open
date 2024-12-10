@@ -1,14 +1,20 @@
 import clsx from 'clsx';
+
 import classes from './MRT_TableBody.module.css';
+
 import { useMemo } from 'react';
-import { type TableProps, Text, TableTd, TableTrProps } from '@mantine/core';
+
+import { createRow } from '@tanstack/react-table';
+
+import { type TableProps, TableTd, type TableTrProps, Text } from '@mantine/core';
+
 import { MRT_TableBodyRow } from './MRT_TableBodyRow';
+
 import {
   type MRT_Row,
   type MRT_RowData,
   type MRT_TableInstance,
 } from '../../types';
-import { createRow } from '@tanstack/react-table';
 import { MRT_ExpandButton } from '../buttons/MRT_ExpandButton';
 
 interface Props<TData extends MRT_RowData> extends TableTrProps {
@@ -54,12 +60,12 @@ export const MRT_TableBodyEmptyRow = <TData extends MRT_RowData>({
 
   return (
     <MRT_TableBodyRow
-      table={table}
-      tableProps={tableProps}
       className={clsx(
         'mrt-table-body-row',
         layoutMode?.startsWith('grid') && classes['empty-row-tr-grid'],
       )}
+      table={table}
+      tableProps={tableProps}
       {...emptyRowProps}
     >
       {renderDetailPanel && (

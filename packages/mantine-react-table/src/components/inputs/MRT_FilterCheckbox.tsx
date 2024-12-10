@@ -1,6 +1,9 @@
 import clsx from 'clsx';
+
 import classes from './MRT_FilterCheckBox.module.css';
+
 import { Checkbox, type CheckboxProps, Tooltip } from '@mantine/core';
+
 import {
   type MRT_CellValue,
   type MRT_Column,

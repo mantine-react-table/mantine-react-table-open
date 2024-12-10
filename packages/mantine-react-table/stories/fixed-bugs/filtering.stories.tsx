@@ -1,4 +1,5 @@
 import { MantineReactTable } from "../../src";
+
 import { type Meta } from '@storybook/react';
 
 const meta: Meta = {
@@ -12,14 +13,14 @@ export const SwitchFromEmptyToEqualsArray = () => (
     columns={[
       {
         accessorKey: 'id',
-        header: 'ID',
         enableColumnFilterModes: false,
+        header: 'ID',
       },
       {
         accessorKey: 'state',
-        header: 'State',
-        filterVariant: 'multi-select',
         columnFilterModeOptions: ['equals', 'empty', 'notEmpty'],
+        filterVariant: 'multi-select',
+        header: 'State',
         mantineFilterMultiSelectProps: {
           data: ["Wyoming", "Delaware", "South Dakota", "Vermont", "Rhode Island"]
         }

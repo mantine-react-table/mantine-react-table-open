@@ -1,6 +1,9 @@
 import { type MouseEvent } from 'react';
+
 import { ActionIcon, Tooltip } from '@mantine/core';
+
 import { MRT_EditActionButtons } from './MRT_EditActionButtons';
+
 import {
   type MRT_Cell,
   type MRT_CellValue,

@@ -1,6 +1,9 @@
 import clsx from 'clsx';
+
 import classes from './MRT_TableHeadCellFilterLabel.module.css';
+
 import { type MouseEvent, useState } from 'react';
+
 import {
   ActionIcon,
   type ActionIconProps,
@@ -8,7 +11,9 @@ import {
   Tooltip,
   Transition,
 } from '@mantine/core';
+
 import { MRT_TableHeadCellFilterContainer } from './MRT_TableHeadCellFilterContainer';
+
 import { localizedFilterOption } from '../../fns/filterFns';
 import {
   type MRT_Header,

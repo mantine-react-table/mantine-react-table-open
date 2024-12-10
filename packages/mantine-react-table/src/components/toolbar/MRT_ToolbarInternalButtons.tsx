@@ -1,6 +1,9 @@
 import clsx from 'clsx';
+
 import classes from './MRT_ToolbarInternalButtons.module.css';
+
 import { Flex, type FlexProps } from '@mantine/core';
+
 import { type MRT_RowData, type MRT_TableInstance } from '../../types';
 import { MRT_ShowHideColumnsButton } from '../buttons/MRT_ShowHideColumnsButton';
 import { MRT_ToggleDensePaddingButton } from '../buttons/MRT_ToggleDensePaddingButton';

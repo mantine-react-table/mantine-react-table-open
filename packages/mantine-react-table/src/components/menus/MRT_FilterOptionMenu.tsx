@@ -1,6 +1,9 @@
 import classes from './MRT_FilterOptionMenu.module.css';
+
 import { Fragment, useMemo } from 'react';
+
 import { Menu } from '@mantine/core';
+
 import {
   type MRT_FilterOption,
   type MRT_Header,

@@ -1,4 +1,5 @@
 import classes from './MRT_ShowHideColumnsMenuItems.module.css';
+
 import {
   type Dispatch,
   type DragEvent,
@@ -6,6 +7,7 @@ import {
   useRef,
   useState,
 } from 'react';
+
 import {
   Box,
   Menu,
@@ -14,6 +16,7 @@ import {
   Tooltip,
   useMantineTheme,
 } from '@mantine/core';
+
 import {
   type MRT_CellValue,
   type MRT_Column,

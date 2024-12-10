@@ -1,6 +1,9 @@
 import clsx from 'clsx';
+
 import classes from './MRT_TableHeadCellResizeHandle.module.css';
+
 import { Box, type BoxProps } from '@mantine/core';
+
 import {
   type MRT_Header,
   type MRT_RowData,

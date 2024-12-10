@@ -1,6 +1,9 @@
 import clsx from 'clsx';
+
 import classes from './MRT_FilterTextInput.module.css';
+
 import { type MouseEvent, useEffect, useMemo, useRef, useState } from 'react';
+
 import {
   ActionIcon,
   Autocomplete,
@@ -13,6 +16,7 @@ import {
 } from '@mantine/core';
 import { DateInput } from '@mantine/dates';
 import { useDebouncedValue } from '@mantine/hooks';
+
 import { localizedFilterOption } from '../../fns/filterFns';
 import {
   type MRT_Header,

@@ -1,4 +1,5 @@
 import { MantineReactTable } from '../../src';
+
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
 

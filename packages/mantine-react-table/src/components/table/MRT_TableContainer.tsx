@@ -1,8 +1,13 @@
 import clsx from 'clsx';
+
 import classes from './MRT_TableContainer.module.css';
+
 import { useEffect, useLayoutEffect, useState } from 'react';
+
 import { Box, type BoxProps, LoadingOverlay } from '@mantine/core';
+
 import { MRT_Table } from './MRT_Table';
+
 import { type MRT_RowData, type MRT_TableInstance } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 import { MRT_EditRowModal } from '../modals/MRT_EditRowModal';

@@ -1,7 +1,9 @@
 import { Button, Container } from '@mantine/core';
+
 import {
   MantineReactTable, useMantineReactTable
 } from '../../src';
+
 import { type Meta } from '@storybook/react';
 
 const meta: Meta = {
@@ -11,14 +13,14 @@ const meta: Meta = {
 export default meta;
 
 enum DataItemTypeEnum {
-  Dog = 'Dog',
   Cat = 'Cat',
+  Dog = 'Dog',
 }
 
 type DataItemType = {
   id: number;
-  type: DataItemTypeEnum;
   sound: string;
+  type: DataItemTypeEnum;
 };
 
 const typeOptions = [
@@ -29,52 +31,52 @@ const typeOptions = [
 const data: DataItemType[] = [
   {
     id: 1,
-    type: DataItemTypeEnum.Cat,
     sound: 'Meow',
+    type: DataItemTypeEnum.Cat,
   },
   {
     id: 2,
-    type: DataItemTypeEnum.Dog,
     sound: 'Arf',
+    type: DataItemTypeEnum.Dog,
   },
 ];
 
 const CustomResetButton = () => {
   const table = useMantineReactTable({
-    data,
-    enableRowActions: false,
-    renderTopToolbar: false,
-    enableBottomToolbar: false,
-    enableColumnFilters: true,
-    enableColumnActions: false,
-    enableSorting: false,
-    initialState: {
-      showColumnFilters: true,
-    },
     columns: [
       {
         accessorKey: 'id',
-        header: 'ID',
-        filterVariant: 'text',
         filterFn: 'contains',
+        filterVariant: 'text',
+        header: 'ID',
       },
       {
         accessorKey: 'type',
-        header: 'Type',
-        filterVariant: 'select',
-        filterFn: 'equals',
         enableColumnFilter: true,
+        filterFn: 'equals',
+        filterVariant: 'select',
+        header: 'Type',
         mantineFilterSelectProps: {
           data: typeOptions,
         },
       },
       {
         accessorKey: 'sound',
-        header: 'Sound',
-        filterVariant: 'text',
         filterFn: 'contains',
+        filterVariant: 'text',
+        header: 'Sound',
       },
     ],
+    data,
+    enableBottomToolbar: false,
+    enableColumnActions: false,
+    enableColumnFilters: true,
+    enableRowActions: false,
+    enableSorting: false,
+    initialState: {
+      showColumnFilters: true,
+    },
+    renderTopToolbar: false,
   });
 
   return (

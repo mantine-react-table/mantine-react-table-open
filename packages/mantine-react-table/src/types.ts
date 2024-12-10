@@ -6,6 +6,7 @@ import {
   type RefObject,
   type SetStateAction,
 } from 'react';
+
 import {
   type AccessorFn,
   type AggregationFn,
@@ -41,6 +42,7 @@ import {
   type Virtualizer,
   type VirtualizerOptions,
 } from '@tanstack/react-virtual';
+
 import {
   type ActionIconProps,
   type AlertProps,
@@ -64,13 +66,14 @@ import {
   type TableTbodyProps,
   type TableTdProps,
   type TableTfootProps,
-  type TableThProps,
   type TableTheadProps,
+  type TableThProps,
   type TableTrProps,
   type TextInputProps,
   type UnstyledButtonProps,
 } from '@mantine/core';
 import { type DateInputProps } from '@mantine/dates';
+
 import { type MRT_AggregationFns } from './fns/aggregationFns';
 import { type MRT_FilterFns } from './fns/filterFns';
 import { type MRT_SortingFns } from './fns/sortingFns';
@@ -79,28 +82,28 @@ import { type MRT_Icons } from './icons';
 export type { MRT_Icons };
 
 export type LiteralUnion<T extends U, U = string> =
-  | T
-  | (U & Record<never, never>);
+  | (Record<never, never> & U)
+  | T;
 
 export type Prettify<T> = { [K in keyof T]: T[K] } & unknown;
 
 export type Xor<A, B> =
-  | Prettify<A & { [k in keyof B]?: never }>
-  | Prettify<B & { [k in keyof A]?: never }>;
+  | Prettify<{ [k in keyof A]?: never } & B>
+  | Prettify<{ [k in keyof B]?: never } & A>;
 
-export type HTMLPropsRef<T extends HTMLElement> = Omit<
+export type HTMLPropsRef<T extends HTMLElement> = {
+  ref?: MutableRefObject<null | T> | null;
+} & Omit<
   HTMLProps<T>,
   'color' | 'data' | 'label' | 'ref' | 'size' | 'style' | 'type'
-> & {
-  ref?: MutableRefObject<T | null> | null;
-};
+>;
 
 export type MantineShade = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
-export type MRT_PaginationProps = Partial<PaginationProps> & {
+export type MRT_PaginationProps = {
   rowsPerPageOptions?: string[];
   showRowsPerPage?: boolean;
-};
+} & Partial<PaginationProps>;
 
 export type MRT_DensityState = 'md' | 'xl' | 'xs';
 
@@ -132,18 +135,18 @@ export type MRT_VirtualizerOptions<
 export type MRT_ColumnVirtualizer<
   TScrollElement extends Element | Window = HTMLDivElement,
   TItemElement extends Element = HTMLTableCellElement,
-> = Virtualizer<TScrollElement, TItemElement> & {
+> = {
   virtualColumns: MRT_VirtualItem[];
   virtualPaddingLeft?: number;
   virtualPaddingRight?: number;
-};
+} & Virtualizer<TScrollElement, TItemElement>;
 
 export type MRT_RowVirtualizer<
   TScrollElement extends Element | Window = HTMLDivElement,
   TItemElement extends Element = HTMLTableRowElement,
-> = Virtualizer<TScrollElement, TItemElement> & {
+> = {
   virtualRows: MRT_VirtualItem[];
-};
+} & Virtualizer<TScrollElement, TItemElement>;
 
 export type MRT_ColumnHelper<TData extends MRT_RowData> = {
   accessor: <
@@ -195,9 +198,10 @@ export interface MRT_Localization {
   filterFuzzy: string;
   filterGreaterThan: string;
   filterGreaterThanOrEqualTo: string;
-  filterInNumberRange: string;
   filterIncludesString: string;
   filterIncludesStringSensitive: string;
+  filteringByColumn: string;
+  filterInNumberRange: string;
   filterLessThan: string;
   filterLessThanOrEqualTo: string;
   filterMode: string;
@@ -205,7 +209,6 @@ export interface MRT_Localization {
   filterNotEquals: string;
   filterStartsWith: string;
   filterWeakEquals: string;
-  filteringByColumn: string;
   goToFirstPage: string;
   goToLastPage: string;
   goToNextPage: string;
@@ -261,29 +264,7 @@ export interface MRT_RowModel<TData extends MRT_RowData> {
   rowsById: { [key: string]: MRT_Row<TData> };
 }
 
-export type MRT_TableInstance<TData extends MRT_RowData> = Omit<
-  Table<TData>,
-  | 'getAllColumns'
-  | 'getAllFlatColumns'
-  | 'getAllLeafColumns'
-  | 'getBottomRows'
-  | 'getCenterLeafColumns'
-  | 'getCenterRows'
-  | 'getColumn'
-  | 'getExpandedRowModel'
-  | 'getFlatHeaders'
-  | 'getHeaderGroups'
-  | 'getLeftLeafColumns'
-  | 'getPaginationRowModel'
-  | 'getPreFilteredRowModel'
-  | 'getPrePaginationRowModel'
-  | 'getRightLeafColumns'
-  | 'getRowModel'
-  | 'getSelectedRowModel'
-  | 'getState'
-  | 'getTopRows'
-  | 'options'
-> & {
+export type MRT_TableInstance<TData extends MRT_RowData> = {
   getAllColumns: () => MRT_Column<TData>[];
   getAllFlatColumns: () => MRT_Column<TData>[];
   getAllLeafColumns: () => MRT_Column<TData>[];
@@ -326,25 +307,47 @@ export type MRT_TableInstance<TData extends MRT_RowData> = Omit<
   setEditingCell: Dispatch<SetStateAction<MRT_Cell<TData> | null>>;
   setEditingRow: Dispatch<SetStateAction<MRT_Row<TData> | null>>;
   setGlobalFilterFn: Dispatch<SetStateAction<MRT_FilterOption>>;
-  setHoveredColumn: Dispatch<SetStateAction<Partial<MRT_Column<TData>> | null>>;
-  setHoveredRow: Dispatch<SetStateAction<Partial<MRT_Row<TData>> | null>>;
+  setHoveredColumn: Dispatch<SetStateAction<null | Partial<MRT_Column<TData>>>>;
+  setHoveredRow: Dispatch<SetStateAction<null | Partial<MRT_Row<TData>>>>;
   setIsFullScreen: Dispatch<SetStateAction<boolean>>;
   setShowAlertBanner: Dispatch<SetStateAction<boolean>>;
   setShowColumnFilters: Dispatch<SetStateAction<boolean>>;
   setShowGlobalFilter: Dispatch<SetStateAction<boolean>>;
   setShowToolbarDropZone: Dispatch<SetStateAction<boolean>>;
-};
+} & Omit<
+  Table<TData>,
+  | 'getAllColumns'
+  | 'getAllFlatColumns'
+  | 'getAllLeafColumns'
+  | 'getBottomRows'
+  | 'getCenterLeafColumns'
+  | 'getCenterRows'
+  | 'getColumn'
+  | 'getExpandedRowModel'
+  | 'getFlatHeaders'
+  | 'getHeaderGroups'
+  | 'getLeftLeafColumns'
+  | 'getPaginationRowModel'
+  | 'getPreFilteredRowModel'
+  | 'getPrePaginationRowModel'
+  | 'getRightLeafColumns'
+  | 'getRowModel'
+  | 'getSelectedRowModel'
+  | 'getState'
+  | 'getTopRows'
+  | 'options'
+>;
 
-export type MRT_DefinedTableOptions<TData extends MRT_RowData> = Omit<
-  MRT_TableOptions<TData>,
-  'icons' | 'localization'
-> & {
+export type MRT_DefinedTableOptions<TData extends MRT_RowData> = {
   icons: MRT_Icons;
   localization: MRT_Localization;
-};
+} & Omit<
+  MRT_TableOptions<TData>,
+  'icons' | 'localization'
+>;
 
 export type MRT_StatefulTableOptions<TData extends MRT_RowData> =
-  MRT_DefinedTableOptions<TData> & {
+  {
     state: Pick<
       MRT_TableState<TData>,
       | 'columnFilterFns'
@@ -367,10 +370,10 @@ export type MRT_StatefulTableOptions<TData extends MRT_RowData> =
       | 'showGlobalFilter'
       | 'showToolbarDropZone'
     >;
-  };
+  } & MRT_DefinedTableOptions<TData>;
 
 export type MRT_TableState<TData extends MRT_RowData> = Prettify<
-  TableState & {
+  {
     columnFilterFns: MRT_ColumnFilterFnsState;
     creatingRow: MRT_Row<TData> | null;
     density: MRT_DensityState;
@@ -379,8 +382,8 @@ export type MRT_TableState<TData extends MRT_RowData> = Prettify<
     editingCell: MRT_Cell<TData> | null;
     editingRow: MRT_Row<TData> | null;
     globalFilterFn: MRT_FilterOption;
-    hoveredColumn: Partial<MRT_Column<TData>> | null;
-    hoveredRow: Partial<MRT_Row<TData>> | null;
+    hoveredColumn: null | Partial<MRT_Column<TData>>;
+    hoveredRow: null | Partial<MRT_Row<TData>>;
     isFullScreen: boolean;
     isLoading: boolean;
     isSaving: boolean;
@@ -391,76 +394,10 @@ export type MRT_TableState<TData extends MRT_RowData> = Prettify<
     showProgressBars: boolean;
     showSkeletons: boolean;
     showToolbarDropZone: boolean;
-  }
+  } & TableState
 >;
 
-export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = Omit<
-  ColumnDef<TData, TValue>,
-  | 'accessorKey'
-  | 'aggregatedCell'
-  | 'aggregationFn'
-  | 'cell'
-  | 'columns'
-  | 'filterFn'
-  | 'footer'
-  | 'header'
-  | 'id'
-  | 'sortingFn'
-> & {
-  AggregatedCell?: (props: {
-    cell: MRT_Cell<TData, TValue>;
-    column: MRT_Column<TData, TValue>;
-    row: MRT_Row<TData>;
-    table: MRT_TableInstance<TData>;
-  }) => ReactNode;
-  Cell?: (props: {
-    cell: MRT_Cell<TData, TValue>;
-    column: MRT_Column<TData, TValue>;
-    renderedCellValue: ReactNode | number | string;
-    renderedColumnIndex?: number;
-    renderedRowIndex?: number;
-    row: MRT_Row<TData>;
-    rowRef?: RefObject<HTMLTableRowElement>;
-    table: MRT_TableInstance<TData>;
-  }) => ReactNode;
-  Edit?: (props: {
-    cell: MRT_Cell<TData, TValue>;
-    column: MRT_Column<TData, TValue>;
-    row: MRT_Row<TData>;
-    table: MRT_TableInstance<TData>;
-  }) => ReactNode;
-  Filter?: (props: {
-    column: MRT_Column<TData, TValue>;
-    header: MRT_Header<TData>;
-    rangeFilterIndex?: number;
-    table: MRT_TableInstance<TData>;
-  }) => ReactNode;
-  Footer?:
-    | ((props: {
-        column: MRT_Column<TData, TValue>;
-        footer: MRT_Header<TData>;
-        table: MRT_TableInstance<TData>;
-      }) => ReactNode)
-    | ReactNode;
-  GroupedCell?: (props: {
-    cell: MRT_Cell<TData, TValue>;
-    column: MRT_Column<TData, TValue>;
-    row: MRT_Row<TData>;
-    table: MRT_TableInstance<TData>;
-  }) => ReactNode;
-  Header?:
-    | ((props: {
-        column: MRT_Column<TData, TValue>;
-        header: MRT_Header<TData>;
-        table: MRT_TableInstance<TData>;
-      }) => ReactNode)
-    | ReactNode;
-  PlaceholderCell?: (props: {
-    cell: MRT_Cell<TData, TValue>;
-    column: MRT_Column<TData, TValue>;
-    row: MRT_Row<TData>;
-    table: MRT_TableInstance<TData>;
-  }) => ReactNode;
+export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = {
   /**
    * Either an `accessorKey` or a combination of an `accessorFn` and `id` are required for a data column definition.
    * Specify a function here to point to the correct property in the data object.
@@ -476,8 +413,24 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = Omit<
    * @example accessorKey: 'username' //simple
    * @example accessorKey: 'name.firstName' //deep key dot notation
    */
-  accessorKey?: DeepKeys<TData> | (string & {});
+  accessorKey?: ({} & string) | DeepKeys<TData>;
+  AggregatedCell?: (props: {
+    cell: MRT_Cell<TData, TValue>;
+    column: MRT_Column<TData, TValue>;
+    row: MRT_Row<TData>;
+    table: MRT_TableInstance<TData>;
+  }) => ReactNode;
   aggregationFn?: Array<MRT_AggregationFn<TData>> | MRT_AggregationFn<TData>;
+  Cell?: (props: {
+    cell: MRT_Cell<TData, TValue>;
+    column: MRT_Column<TData, TValue>;
+    renderedCellValue: number | ReactNode | string;
+    renderedColumnIndex?: number;
+    renderedRowIndex?: number;
+    row: MRT_Row<TData>;
+    rowRef?: RefObject<HTMLTableRowElement>;
+    table: MRT_TableInstance<TData>;
+  }) => ReactNode;
   /**
    * Specify what type of column this is. Either `data`, `display`, or `group`. Defaults to `data`.
    * Leave this blank if you are just creating a normal data column.
@@ -488,10 +441,16 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = Omit<
    */
   columnDefType?: 'data' | 'display' | 'group';
   columnFilterModeOptions?: Array<
-    LiteralUnion<string & MRT_FilterOption>
+    LiteralUnion<MRT_FilterOption & string>
   > | null;
   columns?: MRT_ColumnDef<TData>[];
-  editVariant?: 'select' | 'text' | 'multi-select';
+  Edit?: (props: {
+    cell: MRT_Cell<TData, TValue>;
+    column: MRT_Column<TData, TValue>;
+    row: MRT_Row<TData>;
+    table: MRT_TableInstance<TData>;
+  }) => ReactNode;
+  editVariant?: 'multi-select' | 'select' | 'text';
   enableClickToCopy?: ((cell: MRT_Cell<TData>) => boolean) | boolean;
   enableColumnActions?: boolean;
   enableColumnDragging?: boolean;
@@ -499,6 +458,12 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = Omit<
   enableColumnOrdering?: boolean;
   enableEditing?: ((row: MRT_Row<TData>) => boolean) | boolean;
   enableFilterMatchHighlighting?: boolean;
+  Filter?: (props: {
+    column: MRT_Column<TData, TValue>;
+    header: MRT_Header<TData>;
+    rangeFilterIndex?: number;
+    table: MRT_TableInstance<TData>;
+  }) => ReactNode;
   filterFn?: MRT_FilterFn<TData>;
   filterTooltipValueFn?: MRT_FilterTooltipValueFn;
   filterVariant?:
@@ -511,14 +476,34 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = Omit<
     | 'range-slider'
     | 'select'
     | 'text';
+  Footer?:
+    | ((props: {
+        column: MRT_Column<TData, TValue>;
+        footer: MRT_Header<TData>;
+        table: MRT_TableInstance<TData>;
+      }) => ReactNode)
+    | ReactNode;
   /**
    * footer must be a string. If you want custom JSX to render the footer, you can also specify a `Footer` option. (Capital F)
    */
   footer?: string;
+  GroupedCell?: (props: {
+    cell: MRT_Cell<TData, TValue>;
+    column: MRT_Column<TData, TValue>;
+    row: MRT_Row<TData>;
+    table: MRT_TableInstance<TData>;
+  }) => ReactNode;
   /**
    * If `layoutMode` is `'grid'` or `'grid-no-grow'`, you can specify the flex grow value for individual columns to still grow and take up remaining space, or set to `false`/0 to not grow.
    */
   grow?: boolean | number;
+  Header?:
+    | ((props: {
+        column: MRT_Column<TData, TValue>;
+        header: MRT_Header<TData>;
+        table: MRT_TableInstance<TData>;
+      }) => ReactNode)
+    | ReactNode;
   /**
    * header must be a string. If you want custom JSX to render the header, you can also specify a `Header` option. (Capital H)
    */
@@ -532,7 +517,7 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = Omit<
    *
    * @default gets set to the same value as `accessorKey` by default
    */
-  id?: LiteralUnion<string & keyof TData>;
+  id?: LiteralUnion<keyof TData & string>;
   mantineColumnActionsButtonProps?:
     | ((props: {
         column: MRT_Column<TData, TValue>;
@@ -638,6 +623,12 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = Omit<
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLTableCellElement> & TableThProps)
     | (HTMLPropsRef<HTMLTableCellElement> & TableThProps);
+  PlaceholderCell?: (props: {
+    cell: MRT_Cell<TData, TValue>;
+    column: MRT_Column<TData, TValue>;
+    row: MRT_Row<TData>;
+    table: MRT_TableInstance<TData>;
+  }) => ReactNode;
   renderColumnActionsMenuItems?: (props: {
     column: MRT_Column<TData, TValue>;
     internalColumnMenuItems: ReactNode;
@@ -651,7 +642,19 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = Omit<
   }) => ReactNode;
   sortingFn?: MRT_SortingFn<TData>;
   visibleInShowHideMenu?: boolean;
-};
+} & Omit<
+  ColumnDef<TData, TValue>,
+  | 'accessorKey'
+  | 'aggregatedCell'
+  | 'aggregationFn'
+  | 'cell'
+  | 'columns'
+  | 'filterFn'
+  | 'footer'
+  | 'header'
+  | 'id'
+  | 'sortingFn'
+>;
 
 export type MRT_DisplayColumnDef<
   TData extends MRT_RowData,
@@ -659,70 +662,70 @@ export type MRT_DisplayColumnDef<
 > = Omit<MRT_ColumnDef<TData, TValue>, 'accessorFn' | 'accessorKey'>;
 
 export type MRT_GroupColumnDef<TData extends MRT_RowData> =
-  MRT_DisplayColumnDef<TData, any> & {
+  {
     columns: MRT_ColumnDef<TData>[];
-  };
+  } & MRT_DisplayColumnDef<TData, any>;
 
 export type MRT_DefinedColumnDef<
   TData extends MRT_RowData,
   TValue = unknown,
-> = Omit<MRT_ColumnDef<TData, TValue>, 'defaultDisplayColumn' | 'id'> & {
+> = {
   _filterFn: MRT_FilterOption;
   defaultDisplayColumn: Partial<MRT_ColumnDef<TData, TValue>>;
   id: string;
-};
+} & Omit<MRT_ColumnDef<TData, TValue>, 'defaultDisplayColumn' | 'id'>;
 
-export type MRT_Column<TData extends MRT_RowData, TValue = unknown> = Omit<
-  Column<TData, MRT_CellValue>,
-  'columnDef' | 'columns' | 'filterFn' | 'footer' | 'header'
-> & {
+export type MRT_Column<TData extends MRT_RowData, TValue = unknown> = {
   columnDef: MRT_DefinedColumnDef<TData, TValue>;
   columns?: MRT_Column<TData>[];
   filterFn?: MRT_FilterFn<TData>;
   footer: string;
   header: string;
-};
+} & Omit<
+  Column<TData, MRT_CellValue>,
+  'columnDef' | 'columns' | 'filterFn' | 'footer' | 'header'
+>;
 
-export type MRT_Header<TData extends MRT_RowData, TValue = unknown> = Omit<
+export type MRT_Header<TData extends MRT_RowData, TValue = unknown> = {
+  column: MRT_Column<TData, TValue>;
+} & Omit<
   Header<TData, MRT_CellValue>,
   'column'
-> & {
-  column: MRT_Column<TData, TValue>;
-};
+>;
 
-export type MRT_HeaderGroup<TData extends MRT_RowData> = Omit<
+export type MRT_HeaderGroup<TData extends MRT_RowData> = {
+  headers: MRT_Header<TData>[];
+} & Omit<
   HeaderGroup<TData>,
   'headers'
-> & {
-  headers: MRT_Header<TData>[];
-};
+>;
 
-export type MRT_Row<TData extends MRT_RowData> = Omit<
-  Row<TData>,
-  '_valuesCache' | 'getAllCells' | 'getVisibleCells' | 'subRows'
-> & {
-  _valuesCache: Record<LiteralUnion<string & DeepKeys<TData>>, any>;
+export type MRT_Row<TData extends MRT_RowData> = {
+  _valuesCache: Record<LiteralUnion<DeepKeys<TData> & string>, any>;
   getAllCells: () => MRT_Cell<TData>[];
   getVisibleCells: () => MRT_Cell<TData>[];
   subRows?: MRT_Row<TData>[];
-};
+} & Omit<
+  Row<TData>,
+  '_valuesCache' | 'getAllCells' | 'getVisibleCells' | 'subRows'
+>;
 
-export type MRT_Cell<TData extends MRT_RowData, TValue = unknown> = Omit<
-  Cell<TData, TValue>,
-  'column' | 'row'
-> & {
+export type MRT_Cell<TData extends MRT_RowData, TValue = unknown> = {
   column: MRT_Column<TData, TValue>;
   row: MRT_Row<TData>;
-};
+} & Omit<
+  Cell<TData, TValue>,
+  'column' | 'row'
+>;
 
-export type MRT_AggregationOption = string & keyof typeof MRT_AggregationFns;
+export type MRT_AggregationOption = keyof typeof MRT_AggregationFns & string;
 
 export type MRT_AggregationFn<TData extends MRT_RowData> =
   | AggregationFn<TData>
   | MRT_AggregationOption;
 
 export type MRT_SortingOption = LiteralUnion<
-  string & keyof typeof MRT_SortingFns
+  keyof typeof MRT_SortingFns & string
 >;
 
 export type MRT_SortingFn<TData extends MRT_RowData> =
@@ -730,7 +733,7 @@ export type MRT_SortingFn<TData extends MRT_RowData> =
   | SortingFn<TData>;
 
 export type MRT_FilterOption = LiteralUnion<
-  string & keyof typeof MRT_FilterFns
+  keyof typeof MRT_FilterFns & string
 >;
 
 export type MRT_FilterFn<TData extends MRT_RowData> =
@@ -769,32 +772,11 @@ export type MRT_CreateTableFeature<
  * See the full props list on the official docs site:
  * @link https://www.mantine-react-table.com/docs/api/table-options
  */
-export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
-  Partial<TableOptions<TData>>,
-  | 'columns'
-  | 'data'
-  | 'defaultColumn'
-  | 'enableRowSelection'
-  | 'expandRowsFn'
-  | 'getRowId'
-  | 'globalFilterFn'
-  | 'initialState'
-  | 'onStateChange'
-  | 'state'
-> & {
+export type MRT_TableOptions<TData extends MRT_RowData> = {
   columnFilterDisplayMode?: 'custom' | 'popover' | 'subheader';
   columnFilterModeOptions?: Array<
-    LiteralUnion<string & MRT_FilterOption>
+    LiteralUnion<MRT_FilterOption & string>
   > | null;
-  columnVirtualizerInstanceRef?: MutableRefObject<Virtualizer<
-    HTMLDivElement,
-    HTMLTableCellElement
-  > | null>;
-  columnVirtualizerOptions?:
-    | ((props: {
-        table: MRT_TableInstance<TData>;
-      }) => Partial<VirtualizerOptions<HTMLDivElement, HTMLTableCellElement>>)
-    | Partial<VirtualizerOptions<HTMLDivElement, HTMLTableCellElement>>;
   /**
    * The columns to display in the table. `accessorKey`s or `accessorFn`s must match keys in the `data` prop.
    *
@@ -806,6 +788,15 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
    * @link https://www.mantine-react-table.com/docs/api/column-options
    */
   columns: MRT_ColumnDef<TData>[];
+  columnVirtualizerInstanceRef?: MutableRefObject<null | Virtualizer<
+    HTMLDivElement,
+    HTMLTableCellElement
+  >>;
+  columnVirtualizerOptions?:
+    | ((props: {
+        table: MRT_TableInstance<TData>;
+      }) => Partial<VirtualizerOptions<HTMLDivElement, HTMLTableCellElement>>)
+    | Partial<VirtualizerOptions<HTMLDivElement, HTMLTableCellElement>>;
   createDisplayMode?: 'custom' | 'modal' | 'row';
   /**
    * Pass your data as an array of objects. Objects can theoretically be any shape, but it's best to keep them consistent.
@@ -881,8 +872,8 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
   mantineBottomToolbarProps?:
     | ((props: {
         table: MRT_TableInstance<TData>;
-      }) => HTMLPropsRef<HTMLDivElement> & BoxProps)
-    | (HTMLPropsRef<HTMLDivElement> & BoxProps);
+      }) => BoxProps & HTMLPropsRef<HTMLDivElement>)
+    | (BoxProps & HTMLPropsRef<HTMLDivElement>);
   mantineColumnActionsButtonProps?:
     | ((props: {
         column: MRT_Column<TData, MRT_CellValue>;
@@ -913,8 +904,8 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     | ((props: {
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
-      }) => HTMLPropsRef<HTMLTableCellElement> & BoxProps)
-    | (HTMLPropsRef<HTMLTableCellElement> & BoxProps);
+      }) => BoxProps & HTMLPropsRef<HTMLTableCellElement>)
+    | (BoxProps & HTMLPropsRef<HTMLTableCellElement>);
   mantineEditRowModalProps?:
     | ((props: {
         row: MRT_Row<TData>;
@@ -1038,21 +1029,21 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
       }) => HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>)
     | (HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>);
   mantineSelectAllCheckboxProps?:
+    | ((CheckboxProps | RadioProps | SwitchProps) &
+        HTMLPropsRef<HTMLInputElement>)
     | ((props: {
         table: MRT_TableInstance<TData>;
-      }) => HTMLPropsRef<HTMLInputElement> &
-        (CheckboxProps | RadioProps | SwitchProps))
-    | (HTMLPropsRef<HTMLInputElement> &
-        (CheckboxProps | RadioProps | SwitchProps));
+      }) => (CheckboxProps | RadioProps | SwitchProps) &
+        HTMLPropsRef<HTMLInputElement>);
   mantineSelectCheckboxProps?:
+    | ((CheckboxProps | RadioProps | SwitchProps) &
+        HTMLPropsRef<HTMLInputElement>)
     | ((props: {
         renderedRowIndex?: number;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
-      }) => HTMLPropsRef<HTMLInputElement> &
-        (CheckboxProps | RadioProps | SwitchProps))
-    | (HTMLPropsRef<HTMLInputElement> &
-        (CheckboxProps | RadioProps | SwitchProps));
+      }) => (CheckboxProps | RadioProps | SwitchProps) &
+        HTMLPropsRef<HTMLInputElement>);
   mantineSkeletonProps?:
     | ((props: {
         cell: MRT_Cell<TData, MRT_CellValue>;
@@ -1087,8 +1078,8 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
   mantineTableContainerProps?:
     | ((props: {
         table: MRT_TableInstance<TData>;
-      }) => HTMLPropsRef<HTMLDivElement> & BoxProps)
-    | (HTMLPropsRef<HTMLDivElement> & BoxProps);
+      }) => BoxProps & HTMLPropsRef<HTMLDivElement>)
+    | (BoxProps & HTMLPropsRef<HTMLDivElement>);
   mantineTableFooterCellProps?:
     | ((props: {
         column: MRT_Column<TData, MRT_CellValue>;
@@ -1141,8 +1132,8 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
   mantineTopToolbarProps?:
     | ((props: {
         table: MRT_TableInstance<TData>;
-      }) => HTMLPropsRef<HTMLDivElement> & BoxProps)
-    | (HTMLPropsRef<HTMLDivElement> & BoxProps);
+      }) => BoxProps & HTMLPropsRef<HTMLDivElement>)
+    | (BoxProps & HTMLPropsRef<HTMLDivElement>);
   /**
    * Memoize cells, rows, or the entire table body to potentially improve render performance.
    *
@@ -1160,7 +1151,7 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     exitCreatingMode: () => void;
     row: MRT_Row<TData>;
     table: MRT_TableInstance<TData>;
-    values: Record<LiteralUnion<string & DeepKeys<TData>>, any>;
+    values: Record<LiteralUnion<DeepKeys<TData> & string>, any>;
   }) => void;
   onDensityChange?: OnChangeFn<MRT_DensityState>;
   onDraggingColumnChange?: OnChangeFn<MRT_Column<TData> | null>;
@@ -1175,11 +1166,11 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     exitEditingMode: () => void;
     row: MRT_Row<TData>;
     table: MRT_TableInstance<TData>;
-    values: Record<LiteralUnion<string & DeepKeys<TData>>, any>;
+    values: Record<LiteralUnion<DeepKeys<TData> & string>, any>;
   }) => Promise<void> | void;
   onGlobalFilterFnChange?: OnChangeFn<MRT_FilterOption>;
-  onHoveredColumnChange?: OnChangeFn<Partial<MRT_Column<TData>> | null>;
-  onHoveredRowChange?: OnChangeFn<Partial<MRT_Row<TData>> | null>;
+  onHoveredColumnChange?: OnChangeFn<null | Partial<MRT_Column<TData>>>;
+  onHoveredRowChange?: OnChangeFn<null | Partial<MRT_Row<TData>>>;
   onIsFullScreenChange?: OnChangeFn<boolean>;
   onShowAlertBannerChange?: OnChangeFn<boolean>;
   onShowColumnFiltersChange?: OnChangeFn<boolean>;
@@ -1216,9 +1207,9 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   renderDetailPanel?: (props: {
+    internalEditComponents: ReactNode[];
     row: MRT_Row<TData>;
     table: MRT_TableInstance<TData>;
-    internalEditComponents: ReactNode[];
   }) => ReactNode;
   renderEditRowModalContent?: (props: {
     internalEditComponents: ReactNode[];
@@ -1245,8 +1236,8 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   renderToolbarAlertBannerContent?: (props: {
-    groupedAlert: ReactNode | null;
-    selectedAlert: ReactNode | null;
+    groupedAlert: null | ReactNode;
+    selectedAlert: null | ReactNode;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   renderToolbarInternalActions?: (props: {
@@ -1268,10 +1259,10 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     | 'sticky'
     | 'top'
     | 'top-and-bottom';
-  rowVirtualizerInstanceRef?: MutableRefObject<Virtualizer<
+  rowVirtualizerInstanceRef?: MutableRefObject<null | Virtualizer<
     HTMLDivElement,
     HTMLTableRowElement
-  > | null>;
+  >>;
   rowVirtualizerOptions?:
     | ((props: {
         table: MRT_TableInstance<TData>;
@@ -1283,4 +1274,16 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
    * Manage state externally any way you want, then pass it back into MRT.
    */
   state?: Partial<MRT_TableState<TData>>;
-};
+} & Omit<
+  Partial<TableOptions<TData>>,
+  | 'columns'
+  | 'data'
+  | 'defaultColumn'
+  | 'enableRowSelection'
+  | 'expandRowsFn'
+  | 'getRowId'
+  | 'globalFilterFn'
+  | 'initialState'
+  | 'onStateChange'
+  | 'state'
+>;

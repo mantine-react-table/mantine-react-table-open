@@ -1,14 +1,19 @@
 import clsx from 'clsx';
+
 import classes from './MRT_TableBodyRow.module.css';
+
 import { type DragEvent, memo, useMemo, useRef } from 'react';
+
 import {
   Box,
   type TableProps,
   TableTr,
   type TableTrProps,
 } from '@mantine/core';
-import { MRT_TableBodyCell, Memo_MRT_TableBodyCell } from './MRT_TableBodyCell';
+
+import { Memo_MRT_TableBodyCell, MRT_TableBodyCell } from './MRT_TableBodyCell';
 import { MRT_TableDetailPanel } from './MRT_TableDetailPanel';
+
 import {
   type MRT_Cell,
   type MRT_ColumnVirtualizer,

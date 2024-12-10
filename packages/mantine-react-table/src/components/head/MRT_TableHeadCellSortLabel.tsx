@@ -1,13 +1,16 @@
 import clsx from 'clsx';
+
 import classes from './MRT_TableHeadCellSortLabel.module.css';
+
 import {
   ActionIcon,
   type ActionIconProps,
   Indicator,
   Tooltip,
 } from '@mantine/core';
-import { dataVariable } from '../../utils/style.utils';
+
 import type { MRT_Header, MRT_RowData, MRT_TableInstance } from '../../types';
+import { dataVariable } from '../../utils/style.utils';
 
 interface Props<TData extends MRT_RowData> extends ActionIconProps {
   header: MRT_Header<TData>;

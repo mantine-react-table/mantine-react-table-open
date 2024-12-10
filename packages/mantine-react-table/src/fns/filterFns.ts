@@ -1,9 +1,10 @@
 import {
   type RankingInfo,
-  rankItem,
   rankings,
+  rankItem,
 } from '@tanstack/match-sorter-utils';
-import { type Row, filterFns } from '@tanstack/react-table';
+import { filterFns, type Row } from '@tanstack/react-table';
+
 import {
   type MRT_FilterOption,
   type MRT_Localization,

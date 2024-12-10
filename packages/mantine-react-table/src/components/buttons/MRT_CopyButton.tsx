@@ -1,12 +1,16 @@
 import clsx from 'clsx';
+
 import classes from './MRT_CopyButton.module.css';
+
 import { type ReactNode } from 'react';
+
 import {
   CopyButton,
   Tooltip,
   UnstyledButton,
   type UnstyledButtonProps,
 } from '@mantine/core';
+
 import {
   type MRT_Cell,
   type MRT_CellValue,

@@ -1,12 +1,16 @@
 import clsx from 'clsx';
-import classes from './MRT_BottomToolbar.module.css';
+
 import commonClasses from './common.styles.module.css';
+import classes from './MRT_BottomToolbar.module.css';
+
 import { Box, type BoxProps } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+
 import { MRT_ProgressBar } from './MRT_ProgressBar';
 import { MRT_TablePagination } from './MRT_TablePagination';
 import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
+
 import { type MRT_RowData, type MRT_TableInstance } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 

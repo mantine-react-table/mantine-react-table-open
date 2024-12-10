@@ -1,4 +1,5 @@
-import { MRT_TableOptions, MantineReactTable } from '../../src';
+import { MantineReactTable, MRT_TableOptions } from '../../src';
+
 import { type Meta } from '@storybook/react';
 
 const meta: Meta = {

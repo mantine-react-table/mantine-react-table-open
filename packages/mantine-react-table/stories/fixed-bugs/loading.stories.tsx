@@ -1,6 +1,9 @@
 import { useMemo } from 'react';
+
 import { Menu } from '@mantine/core';
-import { type MRT_ColumnDef, MantineReactTable } from '../../src';
+
+import { MantineReactTable, type MRT_ColumnDef } from '../../src';
+
 import { type Meta } from '@storybook/react';
 
 const meta: Meta = {

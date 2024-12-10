@@ -1,5 +1,7 @@
 import clsx from 'clsx';
+
 import classes from './MRT_TablePagination.module.css';
+
 import {
   ActionIcon,
   Box,
@@ -9,6 +11,7 @@ import {
   Select,
   Text,
 } from '@mantine/core';
+
 import { type MRT_RowData, type MRT_TableInstance } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 

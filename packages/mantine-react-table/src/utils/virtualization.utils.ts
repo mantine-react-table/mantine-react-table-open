@@ -1,4 +1,4 @@
-import { type Range, defaultRangeExtractor } from '@tanstack/react-virtual';
+import { defaultRangeExtractor, type Range } from '@tanstack/react-virtual';
 
 export const extraIndexRangeExtractor = (
   range: Range,

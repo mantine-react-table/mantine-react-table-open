@@ -1,4 +1,5 @@
 import { type MouseEvent } from 'react';
+
 import {
   Checkbox,
   type CheckboxProps,
@@ -8,6 +9,7 @@ import {
   type SwitchProps,
   Tooltip,
 } from '@mantine/core';
+
 import {
   type MRT_Row,
   type MRT_RowData,
@@ -86,7 +88,11 @@ export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
       isLoading || (row && !row.getCanSelect()) || row?.id === 'mrt-row-create',
     onChange: (event) => {
       event.stopPropagation();
-      selectAll ? onSelectAllChange(event) : onSelectionChange!(event);
+      if (selectAll) {
+        onSelectAllChange(event);
+      } else {
+        onSelectionChange!(event);
+      }
     },
     size: density === 'xs' ? 'sm' : 'md',
     ...checkboxProps,

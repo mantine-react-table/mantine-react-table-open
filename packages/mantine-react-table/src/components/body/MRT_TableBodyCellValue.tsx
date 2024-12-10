@@ -1,4 +1,5 @@
 import { Highlight, type HighlightProps } from '@mantine/core';
+
 import {
   type MRT_Cell,
   type MRT_CellValue,
