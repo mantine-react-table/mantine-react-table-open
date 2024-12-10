@@ -199,6 +199,11 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
         newFilterValues[rangeFilterIndex as number] = undefined;
         return newFilterValues;
       });
+      // This is from Mantine v6 but it also applies for v7
+      // https://github.com/mantinedev/mantine/issues/4716#issuecomment-1702699688
+    } else if (isSelectFilter) {
+      setFilterValue(null);
+      column.setFilterValue(null);
     } else {
       setFilterValue('');
       column.setFilterValue(undefined);
