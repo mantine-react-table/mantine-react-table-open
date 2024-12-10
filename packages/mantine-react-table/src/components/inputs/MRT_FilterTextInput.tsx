@@ -205,15 +205,14 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
     }
   };
 
-  if (columnDef.Filter) {
-    return (
-      <>{columnDef.Filter?.({ column, header, rangeFilterIndex, table })}</>
-    );
-  }
-
   const handleClearEmptyFilterChip = () => {
-    setFilterValue('');
-    column.setFilterValue(undefined);
+    if (isMultiSelectFilter) {
+      setFilterValue([]);
+      column.setFilterValue([]);
+    } else {
+      setFilterValue('');
+      column.setFilterValue(undefined);
+    }
     setColumnFilterFns((prev) => ({
       ...prev,
       [header.id]: allowedColumnFilterOptions?.[0] ?? 'fuzzy',
@@ -245,7 +244,8 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
             : textInputProps?.style),
     },
     title: filterPlaceholder,
-    value: isMultiSelectFilter && !Array.isArray(filterValue) ? [] : filterValue,
+    value:
+      isMultiSelectFilter && !Array.isArray(filterValue) ? [] : filterValue,
     variant: 'unstyled',
   } as const;
 
@@ -262,103 +262,129 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
     </ActionIcon>
   ) : null;
 
-  return filterChipLabel ? (
-    <Box style={commonProps.style}>
-      <Badge
-        className={classes['filter-chip-badge']}
-        onClick={handleClearEmptyFilterChip}
-        rightSection={ClearButton}
-        size="lg"
-      >
-        {filterChipLabel}
-      </Badge>
-    </Box>
-  ) : isMultiSelectFilter ? (
-    <MultiSelect
-      {...commonProps}
-      searchable
-      {...multiSelectProps}
-      className={clsx(className, multiSelectProps.className)}
-      data={filterSelectOptions}
-      onChange={(value) => setFilterValue(value)}
-      ref={(node) => {
-        if (node) {
-          filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
-            node;
-          if (multiSelectProps.ref) {
-            multiSelectProps.ref.current = node;
+  if (columnDef.Filter) {
+    return (
+      <>{columnDef.Filter?.({ column, header, rangeFilterIndex, table })}</>
+    );
+  }
+
+  if (filterChipLabel) {
+    return (
+      <Box style={commonProps.style}>
+        <Badge
+          className={classes['filter-chip-badge']}
+          onClick={handleClearEmptyFilterChip}
+          rightSection={ClearButton}
+          size="lg"
+        >
+          {filterChipLabel}
+        </Badge>
+      </Box>
+    );
+  }
+
+  if (isMultiSelectFilter) {
+    return (
+      <MultiSelect
+        {...commonProps}
+        searchable
+        {...multiSelectProps}
+        className={clsx(className, multiSelectProps.className)}
+        data={filterSelectOptions}
+        onChange={(value) => setFilterValue(value)}
+        ref={(node) => {
+          if (node) {
+            filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
+              node;
+            if (multiSelectProps.ref) {
+              multiSelectProps.ref.current = node;
+            }
           }
+        }}
+        rightSection={
+          filterValue?.toString()?.length && multiSelectProps?.clearable
+            ? ClearButton
+            : undefined
         }
-      }}
-      rightSection={
-        filterValue?.toString()?.length && multiSelectProps?.clearable
-          ? ClearButton
-          : undefined
-      }
-      style={commonProps.style}
-    />
-  ) : isSelectFilter ? (
-    <Select
-      {...commonProps}
-      clearable
-      searchable
-      {...selectProps}
-      className={clsx(className, selectProps.className)}
-      clearButtonProps={{
-        size: 'md',
-      }}
-      data={filterSelectOptions}
-      ref={(node) => {
-        if (node) {
-          filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
-            node;
-          if (selectProps.ref) {
-            selectProps.ref.current = node;
+        style={commonProps.style}
+      />
+    );
+  }
+
+  if (isSelectFilter) {
+    return (
+      <Select
+        {...commonProps}
+        clearable
+        searchable
+        {...selectProps}
+        className={clsx(className, selectProps.className)}
+        clearButtonProps={{
+          size: 'md',
+        }}
+        data={filterSelectOptions}
+        ref={(node) => {
+          if (node) {
+            filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
+              node;
+            if (selectProps.ref) {
+              selectProps.ref.current = node;
+            }
           }
-        }
-      }}
-      style={commonProps.style}
-    />
-  ) : isDateFilter ? (
-    <DateInput
-      {...commonProps}
-      allowDeselect
-      clearable
-      popoverProps={{ withinPortal: columnFilterDisplayMode !== 'popover' }}
-      {...dateInputProps}
-      className={clsx(className, dateInputProps.className)}
-      onChange={(event) => commonProps.onChange(event === null ? '' : event)}
-      ref={(node) => {
-        if (node) {
-          filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
-            node;
-          if (dateInputProps.ref) {
-            dateInputProps.ref.current = node;
+        }}
+        style={commonProps.style}
+      />
+    );
+  }
+
+  if (isDateFilter) {
+    return (
+      <DateInput
+        {...commonProps}
+        allowDeselect
+        clearable
+        popoverProps={{ withinPortal: columnFilterDisplayMode !== 'popover' }}
+        {...dateInputProps}
+        className={clsx(className, dateInputProps.className)}
+        onChange={(event) => commonProps.onChange(event === null ? '' : event)}
+        ref={(node) => {
+          if (node) {
+            filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
+              node;
+            if (dateInputProps.ref) {
+              dateInputProps.ref.current = node;
+            }
           }
-        }
-      }}
-      style={commonProps.style}
-    />
-  ) : isAutoCompleteFilter ? (
-    <Autocomplete
-      {...commonProps}
-      onChange={(value) => setFilterValue(value)}
-      rightSection={filterValue?.toString()?.length ? ClearButton : undefined}
-      {...autoCompleteProps}
-      className={clsx(className, autoCompleteProps.className)}
-      data={filterSelectOptions}
-      ref={(node) => {
-        if (node) {
-          filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
-            node;
-          if (autoCompleteProps.ref) {
-            autoCompleteProps.ref.current = node;
+        }}
+        style={commonProps.style}
+      />
+    );
+  }
+
+  if (isAutoCompleteFilter) {
+    return (
+      <Autocomplete
+        {...commonProps}
+        onChange={(value) => setFilterValue(value)}
+        rightSection={filterValue?.toString()?.length ? ClearButton : undefined}
+        {...autoCompleteProps}
+        className={clsx(className, autoCompleteProps.className)}
+        data={filterSelectOptions}
+        ref={(node) => {
+          if (node) {
+            filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
+              node;
+            if (autoCompleteProps.ref) {
+              autoCompleteProps.ref.current = node;
+            }
           }
-        }
-      }}
-      style={commonProps.style}
-    />
-  ) : (
+        }}
+        style={commonProps.style}
+      />
+    );
+  }
+
+  return (
     <TextInput
       {...commonProps}
       onChange={(e) => setFilterValue(e.target.value)}

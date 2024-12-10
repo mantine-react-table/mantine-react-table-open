@@ -19,7 +19,7 @@ export const SwitchFromEmptyToEqualsArray = () => (
         accessorKey: 'state',
         header: 'State',
         filterVariant: 'multi-select',
-        columnFilterModeOptions: ['equals', 'empty'],
+        columnFilterModeOptions: ['equals', 'empty', 'notEmpty'],
         mantineFilterMultiSelectProps: {
           data: ["Wyoming", "Delaware", "South Dakota", "Vermont", "Rhode Island"]
         }
