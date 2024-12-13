@@ -200,18 +200,18 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
     useState(false);
 
   const onMouseEnter = () => {
-    if(!columnDef.enableCellHoverReveal) return;
+    if (!columnDef.enableCellHoverReveal) return;
     const div = cellHoverRevealDivRef.current;
     if (div) {
-        const isOverflow = div.scrollWidth > div.clientWidth;
-        setIsCellContentOverflowing(isOverflow);
+      const isOverflow = div.scrollWidth > div.clientWidth;
+      setIsCellContentOverflowing(isOverflow);
     }
-  }
+  };
 
   const onMouseLeave = () => {
-    if(!columnDef.enableCellHoverReveal) return;
+    if (!columnDef.enableCellHoverReveal) return;
     setIsCellContentOverflowing(false);
-  }
+  };
 
   const renderCellContent = () => {
     if (cell.getIsPlaceholder()) {
@@ -307,24 +307,24 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
       )}
       onDoubleClick={handleDoubleClick}
       onDragEnter={handleDragEnter}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       style={(theme) => ({
         ...widthStyles,
         ...parseFromValuesOrFunc(tableCellProps.style, theme),
       })}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
     >
       <>
         {tableCellProps.children ??
           (columnDef.enableCellHoverReveal ? (
             <div
-              ref={cellHoverRevealDivRef}
               className={clsx(
                 columnDef.enableCellHoverReveal &&
                   !(isCreating || isEditing) &&
                   classes['cell-hover-reveal'],
                 isCellContentOverflowing && classes['overflowing'],
               )}
+              ref={cellHoverRevealDivRef}
             >
               {renderCellContent()}
               {cell.getIsGrouped() && !columnDef.GroupedCell && (

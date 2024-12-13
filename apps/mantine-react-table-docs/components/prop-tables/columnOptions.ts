@@ -139,7 +139,8 @@ export const columnOptions: ColumnOption[] = [
   {
     columnOption: 'enableCellHoverReveal',
     defaultValue: '',
-    description: 'Enable or disable cell hover reveal for this column. There are some limitations to this feature. Passing props through mantineTableBodyCellProps might not work as expected. For example, passing align:\'right\' to mantineTableBodyCellProps would not be applied.',
+    description:
+      "Enable or disable cell hover reveal for this column. There are some limitations to this feature. Passing props through mantineTableBodyCellProps might not work as expected. For example, passing align:'right' to mantineTableBodyCellProps would not be applied.",
     link: '',
     linkText: '',
     source: 'MRT',
