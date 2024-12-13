@@ -34,7 +34,7 @@ export const MRT_GlobalFilterTextInput = <TData extends MRT_RowData>({
       localization,
       mantineSearchTextInputProps,
       manualFiltering,
-      positionGlobalFilter
+      positionGlobalFilter,
     },
     refs: { searchInputRef },
     setGlobalFilter,

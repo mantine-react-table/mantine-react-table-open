@@ -9,6 +9,7 @@ import {
   type MouseEvent,
   type RefObject,
   useEffect,
+  useRef,
   useState,
 } from 'react';
 
@@ -194,6 +195,64 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
     table,
   };
 
+  const cellHoverRevealDivRef = useRef<any>(null);
+  const [isCellContentOverflowing, setIsCellContentOverflowing] =
+    useState(false);
+
+  const onMouseEnter = () => {
+    if (!columnDef.enableCellHoverReveal) return;
+    const div = cellHoverRevealDivRef.current;
+    if (div) {
+      const isOverflow = div.scrollWidth > div.clientWidth;
+      setIsCellContentOverflowing(isOverflow);
+    }
+  };
+
+  const onMouseLeave = () => {
+    if (!columnDef.enableCellHoverReveal) return;
+    setIsCellContentOverflowing(false);
+  };
+
+  const renderCellContent = () => {
+    if (cell.getIsPlaceholder()) {
+      return columnDef.PlaceholderCell?.({ cell, column, row, table }) ?? null;
+    }
+
+    if (showSkeletons !== false && (isLoading || showSkeletons)) {
+      return <Skeleton height={20} width={skeletonWidth} {...skeletonProps} />;
+    }
+
+    if (
+      columnDefType === 'display' &&
+      (['mrt-row-expand', 'mrt-row-numbers', 'mrt-row-select'].includes(
+        column.id,
+      ) ||
+        !row.getIsGrouped())
+    ) {
+      return columnDef.Cell?.({
+        column,
+        renderedCellValue: cell.renderValue() as any,
+        row,
+        rowRef,
+        ...cellValueProps,
+      });
+    }
+
+    if (isCreating || isEditing) {
+      return <MRT_EditCellTextInput cell={cell} table={table} />;
+    }
+
+    if (showClickToCopyButton && columnDef.enableClickToCopy !== false) {
+      return (
+        <MRT_CopyButton cell={cell} table={table}>
+          <MRT_TableBodyCellValue {...cellValueProps} />
+        </MRT_CopyButton>
+      );
+    }
+
+    return <MRT_TableBodyCellValue {...cellValueProps} />;
+  };
+
   return (
     <TableTd
       data-column-pinned={isColumnPinned || undefined}
@@ -243,47 +302,44 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
           classes['root-editable-hover'],
         columnDefType === 'data' && classes['root-data-col'],
         density === 'xs' && classes['root-nowrap'],
+        columnDef.enableCellHoverReveal && classes['root-cell-hover-reveal'],
         tableCellProps?.className,
       )}
       onDoubleClick={handleDoubleClick}
       onDragEnter={handleDragEnter}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       style={(theme) => ({
         ...widthStyles,
         ...parseFromValuesOrFunc(tableCellProps.style, theme),
       })}
     >
-      {tableCellProps.children ?? (
-        <>
-          {cell.getIsPlaceholder() ? (
-            (columnDef.PlaceholderCell?.({ cell, column, row, table }) ?? null)
-          ) : showSkeletons !== false && (isLoading || showSkeletons) ? (
-            <Skeleton height={20} width={skeletonWidth} {...skeletonProps} />
-          ) : columnDefType === 'display' &&
-            (['mrt-row-expand', 'mrt-row-numbers', 'mrt-row-select'].includes(
-              column.id,
-            ) ||
-              !row.getIsGrouped()) ? (
-            columnDef.Cell?.({
-              column,
-              renderedCellValue: cell.renderValue() as any,
-              row,
-              rowRef,
-              ...cellValueProps,
-            })
-          ) : isCreating || isEditing ? (
-            <MRT_EditCellTextInput cell={cell} table={table} />
-          ) : showClickToCopyButton && columnDef.enableClickToCopy !== false ? (
-            <MRT_CopyButton cell={cell} table={table}>
-              <MRT_TableBodyCellValue {...cellValueProps} />
-            </MRT_CopyButton>
+      <>
+        {tableCellProps.children ??
+          (columnDef.enableCellHoverReveal ? (
+            <div
+              className={clsx(
+                columnDef.enableCellHoverReveal &&
+                  !(isCreating || isEditing) &&
+                  classes['cell-hover-reveal'],
+                isCellContentOverflowing && classes['overflowing'],
+              )}
+              ref={cellHoverRevealDivRef}
+            >
+              {renderCellContent()}
+              {cell.getIsGrouped() && !columnDef.GroupedCell && (
+                <> ({row.subRows?.length})</>
+              )}
+            </div>
           ) : (
-            <MRT_TableBodyCellValue {...cellValueProps} />
-          )}
-          {cell.getIsGrouped() && !columnDef.GroupedCell && (
-            <> ({row.subRows?.length})</>
-          )}
-        </>
-      )}
+            <>
+              {renderCellContent()}
+              {cell.getIsGrouped() && !columnDef.GroupedCell && (
+                <> ({row.subRows?.length})</>
+              )}
+            </>
+          ))}
+      </>
     </TableTd>
   );
 };

@@ -74,3 +74,34 @@
     outline: 1px solid var(--mantine-color-gray-7);
   }
 }
+
+.root-cell-hover-reveal {
+  overflow: visible;
+}
+
+.cell-hover-reveal {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: var(--mrt-cell-align);
+}
+
+.cell-hover-reveal.overflowing:hover{
+  overflow: visible;
+  white-space: normal;
+  position: absolute;
+  z-index: 2;
+  padding: var(--table-vertical-spacing)
+    var(--table-horizontal-spacing, var(--mantine-spacing-xs));
+  background-color: var(--mrt-base-background-color);
+  box-shadow: var(--mantine-shadow-sm);
+  border: 1px solid var(--mantine-primary-color-filled);
+  text-indent: -1px;
+  width: max-content;
+  top: 0;
+  left: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
