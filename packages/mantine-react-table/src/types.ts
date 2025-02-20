@@ -52,6 +52,7 @@ import {
   type CheckboxProps,
   type HighlightProps,
   type LoadingOverlayProps,
+  type MantineSize,
   type ModalProps,
   type MultiSelectProps,
   type PaginationProps,
@@ -71,7 +72,6 @@ import {
   type TableTrProps,
   type TextInputProps,
   type UnstyledButtonProps,
-  type MantineSize,
 } from '@mantine/core';
 import { type DateInputProps } from '@mantine/dates';
 
