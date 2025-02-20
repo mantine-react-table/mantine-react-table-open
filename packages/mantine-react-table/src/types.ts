@@ -71,6 +71,7 @@ import {
   type TableTrProps,
   type TextInputProps,
   type UnstyledButtonProps,
+  type MantineSize,
 } from '@mantine/core';
 import { type DateInputProps } from '@mantine/dates';
 
@@ -105,7 +106,7 @@ export type MRT_PaginationProps = {
   showRowsPerPage?: boolean;
 } & Partial<PaginationProps>;
 
-export type MRT_DensityState = 'md' | 'xl' | 'xs';
+export type MRT_DensityState = MantineSize;
 
 export type MRT_ColumnFilterFnsState = Record<string, MRT_FilterOption>;
 
