@@ -180,7 +180,7 @@ export const stateOptions: StateOption[] = [
     linkText: '',
     source: 'TanStack Table',
     stateOption: 'density',
-    type: 'MantineSize',
+    type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
   },
   {
     defaultValue: 'false',

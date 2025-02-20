@@ -52,7 +52,6 @@ import {
   type CheckboxProps,
   type HighlightProps,
   type LoadingOverlayProps,
-  type MantineSize,
   type ModalProps,
   type MultiSelectProps,
   type PaginationProps,
@@ -106,7 +105,7 @@ export type MRT_PaginationProps = {
   showRowsPerPage?: boolean;
 } & Partial<PaginationProps>;
 
-export type MRT_DensityState = MantineSize;
+export type MRT_DensityState = 'lg' | 'md' | 'sm' | 'xl' | 'xs';
 
 export type MRT_ColumnFilterFnsState = Record<string, MRT_FilterOption>;
 
