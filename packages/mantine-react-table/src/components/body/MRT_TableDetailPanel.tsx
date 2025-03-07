@@ -74,10 +74,6 @@ export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
     row.getIsExpanded() &&
     renderDetailPanel?.({ internalEditComponents, row, table });
 
-  if (!DetailPanel) {
-    return null;
-  }
-
   return (
     <TableTr
       data-index={
