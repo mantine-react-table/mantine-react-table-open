@@ -60,7 +60,11 @@ export const useMRT_RowVirtualizer = <
     overscan: 4,
     rangeExtractor: useCallback(
       (range: Range) => {
-        return extraIndexRangeExtractor(range, draggingRow?.index ?? 0);
+        const current_index = getRowModel().rows.findIndex(
+          (row) => row.id === draggingRow?.id,
+        );
+
+        return extraIndexRangeExtractor(range, current_index >= 0 ? current_index: 0);
       },
       [draggingRow],
     ),
