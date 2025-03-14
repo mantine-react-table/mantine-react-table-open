@@ -105,7 +105,7 @@ export type MRT_PaginationProps = {
   showRowsPerPage?: boolean;
 } & Partial<PaginationProps>;
 
-export type MRT_DensityState = 'md' | 'xl' | 'xs';
+export type MRT_DensityState = 'lg' | 'md' | 'sm' | 'xl' | 'xs';
 
 export type MRT_ColumnFilterFnsState = Record<string, MRT_FilterOption>;
 
