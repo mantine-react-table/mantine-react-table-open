@@ -73,7 +73,10 @@ export const useMRT_RowVirtualizer = <
           (row) => row.id === draggingRow?.id,
         );
 
-        return extraIndexRangeExtractor(range, current_index >= 0 ? current_index: 0);
+        return extraIndexRangeExtractor(
+          range,
+          current_index >= 0 ? current_index : 0,
+        );
       },
       [draggingRow],
     ),

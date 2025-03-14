@@ -129,10 +129,7 @@ const createColumns = (): MRT_ColumnDef<Person>[] => [
 
 export const CellAlignment = () => {
   //should be memoized or stable
-  const columns = useMemo<MRT_ColumnDef<Person>[]>(
-    () => createColumns(),
-    []
-  );
+  const columns = useMemo<MRT_ColumnDef<Person>[]>(() => createColumns(), []);
 
   const table = useMantineReactTable({
     columns,
@@ -151,10 +148,7 @@ export const CellAlignment = () => {
 };
 
 export const CellAlignmentWithSorting = () => {
-  const columns = useMemo<MRT_ColumnDef<Person>[]>(
-    () => createColumns(),
-    []
-  );
+  const columns = useMemo<MRT_ColumnDef<Person>[]>(() => createColumns(), []);
 
   const table = useMantineReactTable({
     columns,
@@ -172,10 +166,7 @@ export const CellAlignmentWithSorting = () => {
 };
 
 export const CellAlignmentWithColumnDragging = () => {
-  const columns = useMemo<MRT_ColumnDef<Person>[]>(
-    () => createColumns(),
-    []
-  );
+  const columns = useMemo<MRT_ColumnDef<Person>[]>(() => createColumns(), []);
 
   const table = useMantineReactTable({
     columns,

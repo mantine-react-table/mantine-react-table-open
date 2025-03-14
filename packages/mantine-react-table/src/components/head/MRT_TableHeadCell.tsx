@@ -130,7 +130,8 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
     let pl = 0;
     if (column.getCanSort()) pl++;
     // Only add padding for buttons if they will actually be displayed
-    if (showColumnButtons && (columnActionsEnabled || showDragHandle)) pl += 1.75;
+    if (showColumnButtons && (columnActionsEnabled || showDragHandle))
+      pl += 1.75;
     if (showDragHandle) pl += 1.25;
     return pl;
   }, [showColumnButtons, showDragHandle, columnActionsEnabled]);
