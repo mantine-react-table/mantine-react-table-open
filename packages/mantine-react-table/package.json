@@ -138,9 +138,9 @@
     "@tanstack/react-virtual": "3.11.2"
   },
   "peerDependencies": {
-    "@mantine/core": "^7.9",
-    "@mantine/dates": "^7.9",
-    "@mantine/hooks": "^7.9",
+    "@mantine/core": "^7.17.7",
+    "@mantine/dates": "^7.17.7",
+    "@mantine/hooks": "^7.17.7",
     "@tabler/icons-react": ">=2.23.0",
     "clsx": ">=2",
     "dayjs": ">=1.11",
