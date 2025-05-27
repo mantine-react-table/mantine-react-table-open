@@ -72,9 +72,10 @@ export const MRT_TableHeadCellSortLabel = <TData extends MRT_RowData>({
         <Indicator
           classNames={{
             root: clsx(
-            'mrt-table-head-multi-sort-indicator',
-            classes['multi-sort-indicator']
-            )}}
+              'mrt-table-head-multi-sort-indicator',
+              classes['multi-sort-indicator'],
+            ),
+          }}
           inline
           label={sortIndex + 1}
           offset={4}
