@@ -541,8 +541,8 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = {
         column: MRT_Column<TData, TValue>;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
-      }) => HTMLPropsRef<HTMLInputElement> & Partial<MultiSelectProps>)
-    | (HTMLPropsRef<HTMLInputElement> & Partial<MultiSelectProps>);
+      }) => HTMLPropsRef<HTMLInputElement> & Partial<SelectProps>)
+    | (HTMLPropsRef<HTMLInputElement> & Partial<SelectProps>);
   mantineEditTextInputProps?:
     | ((props: {
         cell: MRT_Cell<TData, TValue>;
