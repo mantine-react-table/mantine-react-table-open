@@ -26,7 +26,7 @@ export const MRT_TableBodyCellValue = <TData extends MRT_RowData>({
 }: Props<TData>) => {
   const {
     getState,
-    options: { enableFilterMatchHighlighting, mantineHighlightProps },
+    options: { enableFilterMatchHighlighting, mantineHighlightProps = {size: 'sm'}},
   } = table;
   const { column, row } = cell;
   const { columnDef } = column;
@@ -37,7 +37,7 @@ export const MRT_TableBodyCellValue = <TData extends MRT_RowData>({
     cell,
     column,
     row,
-    table,
+    table
   }) as Partial<HighlightProps>;
 
   let renderedCellValue =
