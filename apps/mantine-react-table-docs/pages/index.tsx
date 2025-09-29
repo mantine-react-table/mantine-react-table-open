@@ -16,7 +16,7 @@ const HomePage = () => {
   return (
     <Stack className={classes.wrapper}>
       <Alert variant="light" color="blue" icon={<IconInfoCircle />}>
-        Mantine React Table V2 is now in beta. 🎉
+        Mantine React Table V8 is now in beta. 🎉
       </Alert>
       <Title className={classes.title} order={1}>
         Welcome To

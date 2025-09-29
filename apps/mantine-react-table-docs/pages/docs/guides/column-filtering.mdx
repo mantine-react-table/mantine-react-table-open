@@ -9,7 +9,7 @@ import CustomizeFilterComponentsExample from '../../../examples/customize-filter
 import EnableColumnFacetValuesExample from '../../../examples/enable-filter-facet-values';
 
 <Head>
-  <title>Column Filtering Feature Guide - Mantine React Table Docs</title>
+  <title>Column Filtering Feature Guide - Mantine React Table Open Docs</title>
   <meta
     name="description"
     content="How to use, customize, or disable filter features, client-side or server side, in Mantine React Table"
@@ -171,7 +171,7 @@ By default, Mantine React Table uses a `fuzzy` filtering algorithm based on the 
 
 ##### Pre-built MRT Filter Functions
 
-> Pre-built filter functions from Mantine React Table include `between`, `betweenInclusive`, `contains`, `empty`, `endsWith`, `equals`, `fuzzy`, `greaterThan`, `greaterThanOrEqualTo`, `lessThan`, `lessThanOrEqualTo`, `notEmpty`, `notEquals`, and `startsWith`. View these algorithms [here](https://github.com/KevinVandy/mantine-react-table/blob/v2/packages/mantine-react-table/src/fns/filterFns.ts)
+> Pre-built filter functions from Mantine React Table include `between`, `betweenInclusive`, `contains`, `empty`, `endsWith`, `equals`, `fuzzy`, `greaterThan`, `greaterThanOrEqualTo`, `lessThan`, `lessThanOrEqualTo`, `notEmpty`, `notEquals`, and `startsWith`. View these algorithms [here](https://github.com/KevinVandy/mantine-react-table-open/blob/v2/packages/mantine-react-table-open/src/fns/filterFns.ts)
 
 ##### Pre-built TanStack Table Filter Functions
 
@@ -312,7 +312,7 @@ Check out the [Expanded Leaf Row Filtering Behavior docs](/docs/guides/expanding
 
 ### Manual Server-Side Column Filtering
 
-A very common use case when you have a lot of data is to filter the data on the server, instead of client-side. In this case, you will want to set the `manualFiltering` table option to `true` and manage the `columnFilters` state yourself like so (can work in conjunction with [manual global filtering](https://www.mantine-react-table.com/docs/guides/global-filtering#manual-server-side-global-filtering)).
+A very common use case when you have a lot of data is to filter the data on the server, instead of client-side. In this case, you will want to set the `manualFiltering` table option to `true` and manage the `columnFilters` state yourself like so (can work in conjunction with [manual global filtering](https://www.mantine-react-table-open.com/docs/guides/global-filtering#manual-server-side-global-filtering)).
 
 ```tsx
 // You can manage and have control over the columnFilters state yourself
@@ -380,4 +380,4 @@ const table = useMantineReactTable({
 });
 ```
 
-View Extra Storybook **[Examples](https://www.mantine-react-table.dev/?path=/story/features-filtering-examples)**
+View Extra Storybook **[Examples](https://www.mantine-react-table-open.dev/?path=/story/features-filtering-examples)**

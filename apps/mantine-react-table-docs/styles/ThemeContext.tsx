@@ -5,7 +5,7 @@ import {
   createTheme,
   useMantineColorScheme,
 } from '@mantine/core';
-import { type MantineShade } from 'mantine-react-table';
+import { type MantineShade } from 'mantine-react-table-open';
 import { useContext } from 'react';
 
 const ThemeContext = createContext<{

@@ -1,6 +1,6 @@
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css'; //if using mantine date picker features
-import 'mantine-react-table/styles.css'; //make sure MRT styles were imported in your app root (once)
+import 'mantine-react-table-open/styles.css'; //make sure MRT styles were imported in your app root (once)
 import { useMemo, useState } from 'react';
 import {
   MantineReactTable,
@@ -10,7 +10,7 @@ import {
   type MRT_PaginationState,
   type MRT_SortingState,
   type MRT_ColumnFilterFnsState,
-} from 'mantine-react-table';
+} from 'mantine-react-table-open';
 import { ActionIcon, Tooltip } from '@mantine/core';
 import { IconRefresh } from '@tabler/icons-react';
 import {
@@ -51,11 +51,11 @@ const useGetUsers = ({
   sorting,
   pagination,
 }: Params) => {
-  //build the URL (https://www.mantine-react-table.com/api/data?start=0&size=10&filters=[]&globalFilter=&sorting=[])
+  //build the URL (https://www.mantine-react-table-open.com/api/data?start=0&size=10&filters=[]&globalFilter=&sorting=[])
   const fetchURL = new URL(
     '/api/data',
     process.env.NODE_ENV === 'production'
-      ? 'https://www.mantine-react-table.com'
+      ? 'https://www.mantine-react-table-open.com'
       : 'http://localhost:3001',
   );
   fetchURL.searchParams.set(

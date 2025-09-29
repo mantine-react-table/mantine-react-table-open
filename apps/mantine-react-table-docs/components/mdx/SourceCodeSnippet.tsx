@@ -22,7 +22,7 @@ import {
 import { LinkHeading } from './LinkHeading';
 import { usePlausible } from 'next-plausible';
 import { useThemeContext } from '../../styles/ThemeContext';
-import { type MantineShade } from 'mantine-react-table';
+import { type MantineShade } from 'mantine-react-table-open';
 import classes from './SourceCodeSnippet.module.css';
 import { useRouter } from 'next/router';
 
@@ -91,7 +91,7 @@ export const SourceCodeSnippet = ({
               <Box className={classes.wrapper2}>
                 <Flex className={classes.topRowLeft}>
                   <a
-                    href={`https://stackblitz.com/github/KevinVandy/mantine-react-table/tree/v2/apps/mantine-react-table-docs/examples/${tableId}/sandbox?file=src/TS.tsx`}
+                    href={`https://stackblitz.com/github/KevinVandy/mantine-react-table-open/tree/v2/apps/mantine-react-table-open-docs/examples/${tableId}/sandbox?file=src/TS.tsx`}
                     rel="noopener"
                     target="_blank"
                   >
@@ -106,7 +106,7 @@ export const SourceCodeSnippet = ({
                     </Button>
                   </a>
                   <a
-                    href={`https://codesandbox.io/s/github/KevinVandy/mantine-react-table/tree/v2/apps/mantine-react-table-docs/examples/${tableId}/sandbox?file=/src/TS.tsx`}
+                    href={`https://codesandbox.io/s/github/KevinVandy/mantine-react-table-open/tree/v2/apps/mantine-react-table-open-docs/examples/${tableId}/sandbox?file=/src/TS.tsx`}
                     rel="noopener"
                     target="_blank"
                   >
@@ -121,7 +121,7 @@ export const SourceCodeSnippet = ({
                     </Button>
                   </a>
                   <a
-                    href={`https://github.com/KevinVandy/mantine-react-table/tree/v2/apps/mantine-react-table-docs/examples/${tableId}/sandbox/src/TS.tsx`}
+                    href={`https://github.com/KevinVandy/mantine-react-table-open/tree/v2/apps/mantine-react-table-open-docs/examples/${tableId}/sandbox/src/TS.tsx`}
                     rel="noopener"
                     target="_blank"
                   >

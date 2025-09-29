@@ -1,0 +1,19 @@
+{
+  "main": "index.cjs",
+  "module": "index.esm.mjs",
+  "sideEffects": false,
+  "types": "index.d.cts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./index.d.cts",
+        "default": "./index.esm.mjs"
+      },
+      "require": {
+        "types": "./index.esm.d.mts",
+        "default": "./index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  }
+}

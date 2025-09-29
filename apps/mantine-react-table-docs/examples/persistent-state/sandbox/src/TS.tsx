@@ -1,6 +1,6 @@
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css'; //if using mantine date picker features
-import 'mantine-react-table/styles.css'; //make sure MRT styles were imported in your app root (once)
+import 'mantine-react-table-open/styles.css'; //make sure MRT styles were imported in your app root (once)
 import { useEffect, useRef, useState } from 'react';
 import { Button } from '@mantine/core';
 import {
@@ -11,7 +11,7 @@ import {
   type MRT_DensityState,
   type MRT_SortingState,
   type MRT_VisibilityState,
-} from 'mantine-react-table';
+} from 'mantine-react-table-open';
 import { data, type Person } from './makeData';
 
 const columns: MRT_ColumnDef<Person>[] = [

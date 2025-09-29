@@ -35,7 +35,7 @@ import { BlogAuthor } from '../../components/mdx/BlogAuthor';
 
 <BlogAuthor publishDate="2023/07/18" />
 
-I'm finally releasing `mantine-react-table` as stable with its initial V1 release. I have been working on this for the past 7 months, and though I originally wanted to release it much earlier, I'm glad that I kept it in beta as long as I did. Tons of bugs have been fixed, but more importantly, I was able to make a few breaking changes in the month leading up to this release where I was able to introduce a new paradigm to MRT that makes it much easier to work with, as it is now much more similar to TanStack Table.
+I'm finally releasing `mantine-react-table-open` as stable with its initial V1 release. I have been working on this for the past 7 months, and though I originally wanted to release it much earlier, I'm glad that I kept it in beta as long as I did. Tons of bugs have been fixed, but more importantly, I was able to make a few breaking changes in the month leading up to this release where I was able to introduce a new paradigm to MRT that makes it much easier to work with, as it is now much more similar to TanStack Table.
 
 ### Building on Material React Table
 
@@ -70,7 +70,7 @@ return (
 Pass in your columns, data, and options, but what goes on under the hood is a mystery, and trying to control or tweak anything going on is a pain. Now I think Material React Table V1 still does a great job of making it easy to customize and control the inner workings, but now in Mantine React Table, we are getting to the next level by allowing full control of the TanStack Table instance that powers MRT.
 
 ```jsx
-import { useMantineReactTable, MantineReactTable } from 'mantine-react-table';
+import { useMantineReactTable, MantineReactTable } from 'mantine-react-table-open';
 //...
 const table = useMantineReactTable({
   columns,
@@ -85,7 +85,7 @@ This doesn't look that much different, but there is actually a ton of new flexib
 
 ```jsx
 import { Table } from '@mantine/core';
-import { useMantineReactTable } from 'mantine-react-table';
+import { useMantineReactTable } from 'mantine-react-table-open';
 //...
 const table = useMantineReactTable({
   columns,
@@ -130,7 +130,7 @@ import {
   MRT_GlobalFilterTextInput,
   MRT_TableBody,
   MRT_TablePagination,
-} from 'mantine-react-table';
+} from 'mantine-react-table-open';
 //...
 const table = useMantineReactTable({
   columns,
@@ -166,7 +166,7 @@ In this example, the developer wants 100% control over the UI and markup in the 
 MRT still has the single component data grid experience that you are used to, of course. In fact, I expect 90% of developers will still just use it this way. Mantine React Table offers the best of both worlds. Easy to use Data Grids with the option to switch over to manual mode when you need it.
 
 ```jsx
-import { MantineReactTable } from 'mantine-react-table';
+import { MantineReactTable } from 'mantine-react-table-open';
 //...
 return (
   // traditional single component experience is still there for quick tables
@@ -182,7 +182,7 @@ return (
 
 So enough about the new architecture, what features are available in Mantine React Table?
 
-MRT has all of the basic table features like pagination, sorting, filtering, grouping, expanding, resizing, selection, pinning, and more. But MRT also has a ton of advanced features that you may not find in other data grid libraries like virtualization, aggregation, full CRUD support, faceted values, fuzzy search, advanced pre-built filter UI components, and more. See the [feature guides](https://mantine-react-table.com/docs/guides) for more complete info.
+MRT has all of the basic table features like pagination, sorting, filtering, grouping, expanding, resizing, selection, pinning, and more. But MRT also has a ton of advanced features that you may not find in other data grid libraries like virtualization, aggregation, full CRUD support, faceted values, fuzzy search, advanced pre-built filter UI components, and more. See the [feature guides](https://mantine-react-table-open.com/docs/guides) for more complete info.
 
 ### Are There Other Mantine React Table Libraries?
 
@@ -202,4 +202,4 @@ If you need the best possible data grid library out there that can be a full exc
 
 ### What is the Future of Mantine React Table?
 
-There will be no more breaking changes form Mantine React Table V1. New features are still planned, and bug fixes will continue. However, the elephant in the room is the Mantine V7 upgrade that will need to be done by the end of the year for Mantine React Table V2. Mantine V7 is a major upgrade where the underlying library is being heavily refactored to not use Emotion or CSS in JS at all, so how you style components is going to be a lot different. More to come on that later.
+There will be no more breaking changes form Mantine React Table V1. New features are still planned, and bug fixes will continue. However, the elephant in the room is the Mantine V8 upgrade that will need to be done by the end of the year for Mantine React Table V8. Mantine V8 is a major upgrade where the underlying library is being heavily refactored to not use Emotion or CSS in JS at all, so how you style components is going to be a lot different. More to come on that later.

@@ -2,7 +2,7 @@ import Head from 'next/head';
 import AlignmentExample from '../../../examples/column-alignment';
 
 <Head>
-  <title>{'Data (Accessor) Columns - Mantine React Table V2 Docs'}</title>
+  <title>{'Data (Accessor) Columns - Mantine React Table Open Docs'}</title>
   <meta
     name="description"
     content="How to create data columns in Mantine React Table and use accessKeys and accessorFns the right way"
@@ -90,7 +90,7 @@ const columns = useMemo<MRT_ColumnDef<Customer>[]>(
 
 #### Method 3 - Using createMRTColumnHelper
 
-> New in V2 (After many requests)
+> New in V8 (After many requests)
 
 Alternatively you can use the `createMRTColumnHelper` utility function to define your columns definitions in a slightly more type-safe way. Instantiate a `columnHelper` by passing in your `TData` type as a generic argument. Then the first argument of the `columnHelper.accessor()` method can be either an `accessorKey` or an `accessorFn`. Then you can specify the rest of the column options as the second argument.
 
@@ -266,7 +266,7 @@ const table = useMantineReactTable({
 });
 ```
 
-> The `'grid-no-grow'` layoutMode is new in MRT V2.
+> The `'grid-no-grow'` layoutMode is new in MRT V8.
 
 ### Set Column Alignment
 

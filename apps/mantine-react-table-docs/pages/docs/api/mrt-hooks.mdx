@@ -2,7 +2,7 @@ import Head from 'next/head';
 import OptionsSwitcher from '../../../example-groups/OptionsSwitcher';
 
 <Head>
-  <title>{'MRT Hooks - Mantine React Table V2 Docs'}</title>
+  <title>{'MRT Hooks - Mantine React Table Open Docs'}</title>
   <meta name="description" content="All the MRT hooks that can be used" />
   <meta property="og:title" content="Mantine React Table Table Components" />
   <meta
@@ -32,14 +32,14 @@ MRT has been adopting more and more of a hooks based approach for its internal l
 
 ### useMantineReactTable
 
-[Source Code](https://github.com/KevinVandy/mantine-react-table/blob/v2/packages/mantine-react-table/src/hooks/useMantineReactTable.ts)
+[Source Code](https://github.com/KevinVandy/mantine-react-table-open/blob/v2/packages/mantine-react-table-open/src/hooks/useMantineReactTable.ts)
 
 > This is probably the only MRT hook you will need to use, unless you are writing a custom headless table.
 
 This is the main hook from Mantine React Table. It creates a TanStack Table instance with all of the features that MRT provides and that you enable, and uses the proper default table options.
 
 ```tsx
-import { useMantineReactTable } from 'mantine-react-table';
+import { useMantineReactTable } from 'mantine-react-table-open';
 
 const table = useMantineReactTable({
   ...options,
@@ -50,12 +50,12 @@ This hook is the combination of 2 other internal MRT hooks: [`useMRT_TableOption
 
 ### useMRT_TableOptions
 
-[Source Code](https://github.com/KevinVandy/mantine-react-table/blob/v2/packages/mantine-react-table/src/hooks/useMRT_TableOptions.ts)
+[Source Code](https://github.com/KevinVandy/mantine-react-table-open/blob/v2/packages/mantine-react-table-open/src/hooks/useMRT_TableOptions.ts)
 
 This hook simply takes in your custom table options and merges them with the default table options. It also does some extra logic to make sure that some default table options are set correctly based on other enabled features. For example, if you enable row virtualization features, the sticky header will also be enabled by default, and the layoutMode will adjust accordingly.
 
 ```tsx
-import { useMRT_TableOptions } from 'mantine-react-table';
+import { useMRT_TableOptions } from 'mantine-react-table-open';
 
 const transformedTableOptions = useMRT_TableOptions({
   ...options,
@@ -64,12 +64,12 @@ const transformedTableOptions = useMRT_TableOptions({
 
 ### useMRT_TableInstance
 
-[Source Code](https://github.com/KevinVandy/mantine-react-table/blob/v2/packages/mantine-react-table/src/hooks/useMRT_TableInstance.ts)
+[Source Code](https://github.com/KevinVandy/mantine-react-table-open/blob/v2/packages/mantine-react-table-open/src/hooks/useMRT_TableInstance.ts)
 
 This is where most of the magic happens. This hook is responsible for creating the TanStack Table instance, and adding all of the MRT features to it. It needs table options to be passed in to it correctly, with good defaults, and it will return the table instance.
 
 ```tsx
-import { useMRT_TableInstance } from 'mantine-react-table';
+import { useMRT_TableInstance } from 'mantine-react-table-open';
 
 const table = useMRT_TableInstance({
   ...transformedTableOptions, //usually from useMRT_TableOptions
@@ -80,18 +80,18 @@ This hook also uses the [`useMRT_Effects`](#usemrt_effects)
 
 ### useMRT_Effects
 
-[Source Code](https://github.com/KevinVandy/mantine-react-table/blob/v2/packages/mantine-react-table/src/hooks/useMRT_Effects.ts)
+[Source Code](https://github.com/KevinVandy/mantine-react-table-open/blob/v2/packages/mantine-react-table-open/src/hooks/useMRT_Effects.ts)
 
 This hook is responsible for adding some extra useEffect hooks to the table instance. These hooks are needed by some MRT features on a table wide level.
 
 ### useMRT_Rows
 
-[Source Code](https://github.com/KevinVandy/mantine-react-table/blob/v2/packages/mantine-react-table/src/hooks/useMRT_Rows.ts)
+[Source Code](https://github.com/KevinVandy/mantine-react-table-open/blob/v2/packages/mantine-react-table-open/src/hooks/useMRT_Rows.ts)
 
 This hook is mostly a wrapper around `table.getRowModel`, but with a bit more custom logic for fuzzy ranking, row pinning, and more. It consumes a `table` instance and returns the rows that should be rendered in the main table body. This can be a useful hook if you are writing a custom headless table, but still want all of the extra MRT enhanced behavior for fuzzy ranking, row pinning, etc. Alternatively, you can just use `table.getRowModel()` for a more vanilla TanStack Table experience.
 
 ```tsx
-import { useMantineReactTable, useMRT_Rows } from 'mantine-react-table';
+import { useMantineReactTable, useMRT_Rows } from 'mantine-react-table-open';
 
 const table = useMantineReactTable({
   ...options,
@@ -106,7 +106,7 @@ return rows.map((row) => {
 
 ### useMRT_ColumnVirtualizer
 
-[Source Code](https://github.com/KevinVandy/mantine-react-table/blob/v2/packages/mantine-react-table/src/hooks/useMRT_ColumnVirtualizer.ts)
+[Source Code](https://github.com/KevinVandy/mantine-react-table-open/blob/v2/packages/mantine-react-table-open/src/hooks/useMRT_ColumnVirtualizer.ts)
 
 This hook is a wrapper around the `useVirtualizer` hook from TanStack Virtual. It consumes a `table` instance and returns a Column Virtualizer instance that is optimized for MRT table columns, with considerations for other MRT features like column pinning, column resizing, column hiding, and more.
 
@@ -114,7 +114,7 @@ This hook is a wrapper around the `useVirtualizer` hook from TanStack Virtual. I
 import {
   useMantineReactTable,
   useMRT_ColumnVirtualizer,
-} from 'mantine-react-table';
+} from 'mantine-react-table-open';
 
 const table = useMantineReactTable({
   ...options,
@@ -127,7 +127,7 @@ You would only need to use this hook if you are writing a custom headless table 
 
 ### useMRT_RowVirtualizer
 
-[Source Code](https://github.com/KevinVandy/mantine-react-table/blob/v2/packages/mantine-react-table/src/hooks/useMRT_RowVirtualizer.ts)
+[Source Code](https://github.com/KevinVandy/mantine-react-table-open/blob/v2/packages/mantine-react-table-open/src/hooks/useMRT_RowVirtualizer.ts)
 
 This hook is a wrapper around the `useVirtualizer` hook from TanStack Virtual. It consumes a `table` instance and returns a Row Virtualizer instance that is optimized for MRT table rows, with considerations for other MRT features like row pinning, row dragging, and more.
 
@@ -135,7 +135,7 @@ This hook is a wrapper around the `useVirtualizer` hook from TanStack Virtual. I
 import {
   useMantineReactTable,
   useMRT_RowVirtualizer,
-} from 'mantine-react-table';
+} from 'mantine-react-table-open';
 
 const table = useMantineReactTable({
   ...options,

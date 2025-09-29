@@ -36,7 +36,7 @@ export const BreadCrumbs = () => {
         link === '/'
           ? 'Home'
           : link.split('/').pop()?.replaceAll('-', ' ') || '',
-      item: `https://www.mantine-react-table.com${link}`,
+      item: `https://www.mantine-react-table-open.com${link}`,
     })),
   };
 

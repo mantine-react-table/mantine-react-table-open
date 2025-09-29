@@ -1,4 +1,4 @@
-import { type MRT_ColumnDef } from 'mantine-react-table';
+import { type MRT_ColumnDef } from 'mantine-react-table-open';
 
 export type Person = {
   firstName: string;

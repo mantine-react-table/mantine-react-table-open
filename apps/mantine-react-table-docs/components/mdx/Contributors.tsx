@@ -51,13 +51,13 @@ export const Contributors = () => {
       </Box>
       <div style={{ textAlign: 'center' }}>
         <a
-          href="https://github.com/kevinvandy/mantine-react-table/graphs/contributors"
+          href="https://github.com/kevinvandy/mantine-react-table-open/graphs/contributors"
           target="_blank"
           rel="noopener"
         >
           <img
             alt="GitHub Contributors"
-            src="https://contrib.rocks/image?repo=kevinvandy/mantine-react-table"
+            src="https://contrib.rocks/image?repo=kevinvandy/mantine-react-table-open"
           />
         </a>
       </div>

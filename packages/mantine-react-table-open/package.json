@@ -1,7 +1,7 @@
 {
   "version": "2.0.0-beta.9",
   "license": "MIT",
-  "name": "mantine-react-table",
+  "name": "mantine-react-table-open",
   "description": "A fully featured Mantine implementation of TanStack React Table V8, written from the ground up in TypeScript.",
   "author": "Kevin Vandy",
   "keywords": [
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/KevinVandy/mantine-react-table"
+    "url": "https://github.com/appdirect/mantine-react-table-open"
   },
   "funding": {
     "type": "github",
@@ -21,7 +21,7 @@
   },
   "homepage": "https://www.mantine-react-table.com/",
   "bugs": {
-    "url": "https://github.com/KevinVandy/mantine-react-table/issues"
+    "url": "https://github.com/appdirect/mantine-react-table-open/issues"
   },
   "sideEffects": [
     "*.css"
@@ -82,9 +82,9 @@
     "@babel/core": "^7.25.8",
     "@babel/preset-react": "^7.25.7",
     "@faker-js/faker": "^9.0.3",
-    "@mantine/core": "7.13.2",
-    "@mantine/dates": "7.13.2",
-    "@mantine/hooks": "7.13.2",
+    "@mantine/core": "8.3.2",
+    "@mantine/dates": "8.3.2",
+    "@mantine/hooks": "8.3.2",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-typescript": "^11.1.6",
@@ -110,7 +110,7 @@
     "dayjs": "^1.11.13",
     "eslint": "^8.57.0",
     "eslint-plugin-perfectionist": "^3.8.0",
-    "mantine-contextmenu": "^7.12.2",
+    "mantine-contextmenu": "^8.2.0",
     "postcss": "^8.4.47",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
@@ -138,9 +138,9 @@
     "@tanstack/react-virtual": "3.11.2"
   },
   "peerDependencies": {
-    "@mantine/core": "^7.17.7",
-    "@mantine/dates": "^7.17.7",
-    "@mantine/hooks": "^7.17.7",
+    "@mantine/core": "^8.0.0",
+    "@mantine/dates": "^8.0.0",
+    "@mantine/hooks": "^8.0.0",
     "@tabler/icons-react": ">=2.23.0",
     "clsx": ">=2",
     "dayjs": ">=1.11",

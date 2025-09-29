@@ -4,11 +4,11 @@ import {
   MantineReactTable,
   type MRT_TableOptions,
   type MRT_ColumnDef,
-} from 'mantine-react-table';
+} from 'mantine-react-table-open';
 import { Anchor, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { type TableOption, tableOptions } from './tableOptions';
-import { getPrimaryColor } from 'mantine-react-table';
+import { getPrimaryColor } from 'mantine-react-table-open';
 import { InlineCodeHighlight } from '@mantine/code-highlight';
 
 interface Props {
