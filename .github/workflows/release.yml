@@ -1,0 +1,72 @@
+name: Publish Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.org/
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Ensure release changeset
+        run: |
+          RELEASE_FILES=$(find .changeset -maxdepth 1 -type f -name '*.md' ! -name 'README.md')
+          if [ -z "$RELEASE_FILES" ]; then
+            cat <<'EOF' > .changeset/auto-release-${{ github.run_id }}.md
+---
+"mantine-react-table-open": patch
+---
+
+Automated release triggered by push to main.
+EOF
+          fi
+
+      - name: Version packages
+        run: pnpm changeset version
+
+      - name: Update lockfile
+        run: pnpm install --frozen-lockfile
+
+      - name: Build package
+        run: pnpm --filter mantine-react-table-open run build
+
+      - name: Commit release
+        run: |
+          RELEASE_VERSION=$(node -p "require('./packages/mantine-react-table-open/package.json').version")
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add packages/mantine-react-table-open/package.json packages/mantine-react-table-open/CHANGELOG.md pnpm-lock.yaml
+          git commit -m "chore(release): publish v${RELEASE_VERSION}" || echo "No changes to commit"
+
+      - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: pnpm changeset publish
+
+      - name: Push changes and tags
+        run: |
+          git push origin HEAD
+          git push origin --follow-tags
+
