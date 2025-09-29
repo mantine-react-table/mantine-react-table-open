@@ -24,9 +24,11 @@
     "start": "turbo run start --parallel",
     "storybook": "turbo run storybook",
     "storybook:build": "turbo run storybook:build",
-    "storybook:dev": "turbo run storybook"
+    "storybook:dev": "turbo run storybook",
+    "release": "pnpm changeset version && pnpm install --frozen-lockfile && pnpm changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.7",
     "prettier": "^3.3.3",
     "turbo": "^2.1.3"
   },
