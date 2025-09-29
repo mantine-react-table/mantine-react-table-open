@@ -204,12 +204,18 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
         tableCellProps?.className,
       )}
       onDragEnter={handleDragEnter}
-      ref={(node: HTMLTableCellElement) => {
+      ref={(node: HTMLTableCellElement | null) => {
         if (node) {
           tableHeadCellRefs.current[column.id] = node;
-          (
-            isHoveredHeadCellRef as MutableRefObject<HTMLTableCellElement>
-          ).current = node;
+
+          if (typeof isHoveredHeadCellRef === 'function') {
+            isHoveredHeadCellRef(node);
+          } else if (isHoveredHeadCellRef) {
+            (
+              isHoveredHeadCellRef as MutableRefObject<HTMLTableCellElement | null>
+            ).current = node;
+          }
+
           if (columnDefType !== 'group') {
             columnVirtualizer?.measureElement?.(node);
           }
