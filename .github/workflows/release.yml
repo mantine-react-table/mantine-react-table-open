@@ -31,16 +31,12 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Ensure release changeset
+        shell: bash
         run: |
           RELEASE_FILES=$(find .changeset -maxdepth 1 -type f -name '*.md' ! -name 'README.md')
           if [ -z "$RELEASE_FILES" ]; then
-            cat <<'EOF' > .changeset/auto-release-${{ github.run_id }}.md
----
-"mantine-react-table-open": patch
----
-
-Automated release triggered by push to main.
-EOF
+            printf '%s\n' '---' '"mantine-react-table-open": patch' '---' '' 'Automated release triggered by push to main.' > \
+              ".changeset/auto-release-${GITHUB_RUN_ID}.md"
           fi
 
       - name: Version packages
