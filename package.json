@@ -1,5 +1,5 @@
 {
-  "name": "mantine-react-table-turbo",
+  "name": "mantine-react-table-open-turbo",
   "author": "Kevin Vandy",
   "private": true,
   "packageManager": "pnpm@9.3.0",
@@ -15,7 +15,7 @@
     "docs:dev": "turbo run docs:dev",
     "docs:sitemap": "turbo run docs:sitemap",
     "docs:start": "turbo run docs:start",
-    "lib:build": "cp README.md packages/mantine-react-table/README.md && turbo run lib:build",
+    "lib:build": "cp README.md packages/mantine-react-table-open/README.md && turbo run lib:build",
     "lib:build-locales": "turbo run lib:build-locales",
     "lib:build-lib": "turbo run lib:build-lib",
     "lib:dev": "turbo run lib:dev",

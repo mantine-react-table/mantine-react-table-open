@@ -311,7 +311,7 @@ export const routes: Array<RouteItem> = [
         ],
       },
       {
-        href: 'https://www.mantine-react-table.dev',
+        href: 'https://www.mantine-react-table-open.dev',
         label: 'Extra Storybook Examples',
         external: true,
       },
@@ -540,7 +540,7 @@ export const routes: Array<RouteItem> = [
     href: '/blog',
     items: [
       {
-        href: '/blog/introducing-mantine-react-table',
+        href: '/blog/introducing-mantine-react-table-open',
         label: 'Introducing Mantine React Table',
       },
     ],
@@ -555,12 +555,12 @@ export const routes: Array<RouteItem> = [
         external: true,
       },
       {
-        href: 'https://www.github.com/kevinvandy/mantine-react-table',
+        href: 'https://www.github.com/kevinvandy/mantine-react-table-open',
         label: 'GitHub',
         external: true,
       },
       {
-        href: 'https://www.npmjs.com/package/mantine-react-table',
+        href: 'https://www.npmjs.com/package/mantine-react-table-open',
         label: 'NPM',
         external: true,
       },

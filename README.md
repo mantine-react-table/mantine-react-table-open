@@ -90,7 +90,7 @@ npm install @mantine/core @mantine/hooks @mantine/dates @emotion/react @tabler/i
 3. Install mantine-react-table
 
 ```bash
-npm install mantine-react-table
+npm install mantine-react-table-open
 ```
 
 > _`@tanstack/react-table`, `@tanstack/react-virtual`, `@tanstack/match-sorter-utils`,_ are internal dependencies, so you do NOT need to install them yourself.

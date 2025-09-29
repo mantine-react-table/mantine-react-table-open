@@ -23,7 +23,7 @@ import {
 import { useMediaQuery } from '@mantine/hooks';
 import docsearch from '@docsearch/js';
 import '@docsearch/css';
-import { getPrimaryColor } from 'mantine-react-table';
+import { getPrimaryColor } from 'mantine-react-table-open';
 import { useRouter } from 'next/router';
 
 interface Props {
@@ -47,7 +47,7 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
       docsearch({
         appId: 'GA9W0E15I8',
         apiKey: 'd1d8da70283d84d7669881d993eff727',
-        indexName: 'mantine-react-table',
+        indexName: 'mantine-react-table-open',
         container: '#docsearch',
       });
     }
@@ -124,14 +124,14 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
           </Link>
           <Select
             data={[
-              { value: 'www.mantine-react-table.com', label: 'V1' },
-              { value: 'v2.mantine-react-table.com', label: 'V2' },
+              { value: 'www.mantine-react-table-open.com', label: 'V1' },
+              { value: 'v8.mantine-react-table-open.com', label: 'V8' },
             ]}
             onChange={(value) =>
               (location.href = `https://${value}/${pathname}`)
             }
             onClick={() => plausible('version-select')}
-            value="v2.mantine-react-table.com"
+            value="v8.mantine-react-table-open.com"
             size="xs"
             maw="60px"
           />
@@ -162,7 +162,7 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
               c="white"
               variant="transparent"
               size={isMobile ? 'sm' : 'lg'}
-              href="https://github.com/KevinVandy/mantine-react-table"
+              href="https://github.com/KevinVandy/mantine-react-table-open"
               rel="noopener"
               target="_blank"
             >

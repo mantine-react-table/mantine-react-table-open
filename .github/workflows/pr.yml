@@ -1,37 +1,32 @@
-name: Clean PR
+name: PR Checks
 
 on:
   pull_request:
     branches:
-      - v2
+      - main
 
 jobs:
-  clean-pr:
+  validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Setup PNPM
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8.5.1
+          version: 9
 
-      - name: Install Dependencies
-        run: pnpm i
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-      - name: Run Lint
-        run: pnpm run lint -- --fix
+      - name: Run linters
+        run: pnpm run lint
 
-      - name: Run Prettier
-        run: pnpm format
-
-      - name: Commit and Push Changes
-        run: |
-          git config --global user.name 'KevinVandy'
-          git config --global user.email 'kevinvandy@users.noreply.github.com'
-          git add -A
-          git commit -m "Lint and Prettier" || exit 0  # in case no changes present
-          git push origin ${{ github.head_ref }}
+      - name: Run unit checks
+        run: pnpm run build

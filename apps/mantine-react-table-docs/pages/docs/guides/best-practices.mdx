@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
 <Head>
-  <title>{'Best Practices (TypeScript) - Mantine React Table V2 Docs'}</title>
+  <title>{'Best Practices (TypeScript) - Mantine React Table Open Docs'}</title>
   <meta
     name="description"
     content="The Best Practices to follow with TypeScript when using Mantine React Table."
@@ -17,7 +17,7 @@ Here are some best practices to follow when using Mantine React Table. We'll cov
 Run this command in your terminal every few weeks to make sure you are using the latest version of Mantine React Table and other Mantine packages:
 
 ```bash
-npx npm-check-updates -u mantine-react-table @mantine/core @mantine/hooks @mantine/dates @tabler/icons-react dayjs clsx
+npx npm-check-updates -u mantine-react-table-open @mantine/core @mantine/hooks @mantine/dates @tabler/icons-react dayjs clsx
 ```
 
 ### Type-Safety
@@ -71,7 +71,7 @@ import {
   MantineReactTable,
   useMantineReactTable,
   type MRT_ColumnDef, // <--- import MRT_ColumnDef
-} from 'mantine-react-table';
+} from 'mantine-react-table-open';
 import { type User } from './types'; // <--- import your TData type from wherever you defined it
 
 // define your columns, pass User as a generic to MRT_ColumnDef
@@ -96,7 +96,7 @@ const columns: Array<MRT_ColumnDef<User>> = [
 
 #### createMRTColumnHelper Utility
 
-> New in V2 (After many requests)
+> New in V8 (After many requests)
 
 Alternatively you can use the `createMRTColumnHelper` utility function to define your columns. This works the same way as the TanStack `createColumnHelper`.
 
@@ -107,7 +107,7 @@ import {
   MantineReactTable,
   useMantineReactTable,
   createMRTColumnHelper, // <--- import createMRTColumnHelper
-} from 'mantine-react-table';
+} from 'mantine-react-table-open';
 import { type User } from './types'; // <--- import your TData type from wherever you defined it (if using TS)
 
 const columnHelper = createMRTColumnHelper<User>(); // <--- pass your TData type as a generic to createMRTColumnHelper (if using TS)
@@ -140,7 +140,7 @@ const columns = [
 If you are in a situation where you are not able to install TypeScript in your project, you can technically do the same thing as up above in JavaScript using JSDoc.
 
 ```jsx
-import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
+import { MantineReactTable, useMantineReactTable } from 'mantine-react-table-open';
 
 //define TData type with JSDoc
 /**
@@ -152,7 +152,7 @@ import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 
 //import MRT_ColumnDef type with JSDoc
 /**
- * @type {import('mantine-react-table').MRT_ColumnDef<User>[]}
+ * @type {import('mantine-react-table-open').MRT_ColumnDef<User>[]}
  */
 const columns = [
   {
@@ -184,7 +184,7 @@ In my opinion, instead of creating a re-usable component, it is instead actually
 In this example, we are simply creating a factory function that creates all of the default options that you want all of your tables to start with.
 
 ```ts
-import { type MRT_RowData, type MRT_TableOptions } from 'mantine-react-table';
+import { type MRT_RowData, type MRT_TableOptions } from 'mantine-react-table-open';
 
 //define re-useable default table options for all tables in your app
 export const getDefaultMRTOptions = <TData extends MRT_RowData>(): Partial<
@@ -215,7 +215,7 @@ import {
   MantineReactTable,
   useMantineReactTable,
   type MRT_ColumnDef,
-} from 'mantine-react-table';
+} from 'mantine-react-table-open';
 import { getDefaultMRTOptions } from './utils'; //your default options
 
 interface User {
@@ -269,7 +269,7 @@ import {
   type MRT_ColumnDef,
   type MRT_RowData, //default shape of TData (Record<string, any>)
   type MRT_TableOptions,
-} from 'mantine-react-table';
+} from 'mantine-react-table-open';
 
 interface Props<TData extends MRT_RowData> extends MRT_TableOptions<TData> {
   columns: MRT_ColumnDef<TData>[];

@@ -1,13 +1,13 @@
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css'; //if using mantine date picker features
-import 'mantine-react-table/styles.css'; //make sure MRT styles were imported in your app root (once)
+import 'mantine-react-table-open/styles.css'; //make sure MRT styles were imported in your app root (once)
 import classes from './CSS.module.css'; //import your custom css
 import { useMemo } from 'react';
 import {
   MantineReactTable,
   useMantineReactTable,
   type MRT_ColumnDef,
-} from 'mantine-react-table';
+} from 'mantine-react-table-open';
 import { data, type Person } from './makeData';
 import { MantineProvider, useMantineTheme } from '@mantine/core';
 

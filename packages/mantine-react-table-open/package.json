@@ -1,0 +1,150 @@
+{
+  "version": "2.0.0-beta.9",
+  "license": "MIT",
+  "name": "mantine-react-table-open",
+  "description": "A fully featured Mantine implementation of TanStack React Table V8, written from the ground up in TypeScript.",
+  "author": "Kevin Vandy",
+  "keywords": [
+    "react-table",
+    "mantine",
+    "tanstack table",
+    "data table",
+    "data grid"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/appdirect/mantine-react-table-open"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/kevinvandy"
+  },
+  "homepage": "https://www.mantine-react-table.com/",
+  "bugs": {
+    "url": "https://github.com/appdirect/mantine-react-table-open/issues"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "main": "dist/index.cjs",
+  "module": "dist/index.esm.mjs",
+  "types": "dist/index.esm.d.mts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.esm.d.mts",
+        "default": "./dist/index.esm.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json",
+    "./locales/*": "./locales/*",
+    "./styles.css": "./styles.css"
+  },
+  "files": [
+    "dist",
+    "locales",
+    "styles.css",
+    "src"
+  ],
+  "size-limit": [
+    {
+      "path": "dist/index.cjs",
+      "limit": "53 KB"
+    },
+    {
+      "path": "dist/index.esm.mjs",
+      "limit": "50 KB"
+    }
+  ],
+  "engines": {
+    "node": ">=16"
+  },
+  "scripts": {
+    "build": "pnpm lib:build",
+    "build-locales": "pnpm lib:build-locales",
+    "build-lib": "pnpm lib:build-lib",
+    "dev": "pnpm lib:dev",
+    "lib:build": "pnpm build-lib && pnpm build-locales",
+    "lib:build-locales": "node build-locales.mjs",
+    "lib:build-lib": "rm -rf dist && rollup -c rollup.config.mjs && size-limit",
+    "lib:dev": "rollup -c rollup.config.mjs --watch",
+    "lint": "eslint .",
+    "size": "size-limit",
+    "storybook": "pnpm storybook:dev",
+    "storybook:build": "storybook build",
+    "storybook:dev": "storybook dev -p 6007"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.8",
+    "@babel/preset-react": "^7.25.7",
+    "@faker-js/faker": "^9.0.3",
+    "@mantine/core": "8.3.2",
+    "@mantine/dates": "8.3.2",
+    "@mantine/hooks": "8.3.2",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@size-limit/preset-small-lib": "^11.1.6",
+    "@storybook/addon-a11y": "^8.3.5",
+    "@storybook/addon-essentials": "^8.3.5",
+    "@storybook/addon-interactions": "^8.3.5",
+    "@storybook/addon-links": "^8.3.5",
+    "@storybook/addon-storysource": "^8.3.5",
+    "@storybook/blocks": "^8.3.5",
+    "@storybook/preview-api": "^8.3.5",
+    "@storybook/react": "^8.3.5",
+    "@storybook/react-vite": "^8.3.5",
+    "@storybook/testing-library": "^0.2.2",
+    "@tabler/icons-react": "3.19.0",
+    "@types/node": "^22.7.5",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^8.8.1",
+    "@typescript-eslint/parser": "^8.8.1",
+    "@vitejs/plugin-react": "^4.3.2",
+    "clsx": "^2.1.1",
+    "dayjs": "^1.11.13",
+    "eslint": "^8.57.0",
+    "eslint-plugin-perfectionist": "^3.8.0",
+    "mantine-contextmenu": "^8.2.0",
+    "postcss": "^8.4.47",
+    "postcss-preset-mantine": "^1.17.0",
+    "postcss-simple-vars": "^7.0.1",
+    "prop-types": "^15.8.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-is": "^18.3.1",
+    "rollup": "^4.24.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-delete": "^2.1.0",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "size-limit": "^11.1.6",
+    "storybook": "^8.3.5",
+    "storybook-dark-mode": "^4.0.2",
+    "tslib": "^2.7.0",
+    "typescript": "^5.6.3",
+    "typescript-plugin-css-modules": "^5.1.0",
+    "vite": "^5.4.8"
+  },
+  "dependencies": {
+    "@tanstack/match-sorter-utils": "8.19.4",
+    "@tanstack/react-table": "8.20.5",
+    "@tanstack/react-virtual": "3.11.2"
+  },
+  "peerDependencies": {
+    "@mantine/core": "^8.0.0",
+    "@mantine/dates": "^8.0.0",
+    "@mantine/hooks": "^8.0.0",
+    "@tabler/icons-react": ">=2.23.0",
+    "clsx": ">=2",
+    "dayjs": ">=1.11",
+    "react": ">=18.0",
+    "react-dom": ">=18.0"
+  }
+}

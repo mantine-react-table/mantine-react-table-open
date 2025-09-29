@@ -1,6 +1,6 @@
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css'; //if using mantine date picker features
-import 'mantine-react-table/styles.css'; //make sure MRT styles were imported in your app root (once)
+import 'mantine-react-table-open/styles.css'; //make sure MRT styles were imported in your app root (once)
 import { useEffect, useMemo, useState } from 'react';
 import {
   MantineReactTable,
@@ -9,7 +9,7 @@ import {
   type MRT_ColumnFiltersState,
   type MRT_PaginationState,
   type MRT_SortingState,
-} from 'mantine-react-table';
+} from 'mantine-react-table-open';
 
 type UserApiResponse = {
   data: Array<User>;
@@ -57,7 +57,7 @@ const Example = () => {
       const url = new URL(
         '/api/data',
         process.env.NODE_ENV === 'production'
-          ? 'https://www.mantine-react-table.com'
+          ? 'https://www.mantine-react-table-open.com'
           : 'http://localhost:3001',
       );
       url.searchParams.set(

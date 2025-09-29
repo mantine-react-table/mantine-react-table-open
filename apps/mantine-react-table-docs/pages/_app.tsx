@@ -1,8 +1,8 @@
 import '../styles/globals.css';
-import '@mantine/core/styles.css';
-import '@mantine/dates/styles.css'; //if using mantine date picker features
-import '@mantine/code-highlight/styles.css';
-import 'mantine-react-table/styles.css';
+import '@mantine/core/styles.layer.css';
+import '@mantine/dates/styles.layer.css'; //if using mantine date picker features
+import '@mantine/code-highlight/styles.layer.css';
+import 'mantine-react-table-open/styles.css';
 import { useState } from 'react';
 import { type AppProps } from 'next/app';
 import Head from 'next/head';
@@ -47,13 +47,13 @@ function App({ Component, pageProps }: AppProps) {
         />
         <link
           rel="canonical"
-          href={`https://www.mantine-react-table.com${pathname}`}
+          href={`https://www.mantine-react-table-open.com${pathname}`}
         />
         <link rel="icon" href="/mrt_logo.png" />
         <meta property="og:image" content="/mrt_logo.png" />
         <meta
           property="og:url"
-          content={`https://www.mantine-react-table.com${pathname}`}
+          content={`https://www.mantine-react-table-open.com${pathname}`}
         />
         {process.env.NODE_ENV === 'production' && (
           <>
@@ -71,7 +71,7 @@ function App({ Component, pageProps }: AppProps) {
         )}
       </Head>
       <PlausibleProvider
-        domain="v2.mantine-react-table.com"
+        domain="v2.mantine-react-table-open.com"
         enabled={process.env.NODE_ENV === 'production'}
       >
         <ThemeContextProvider>

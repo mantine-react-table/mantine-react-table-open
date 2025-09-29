@@ -2,7 +2,7 @@ import Head from 'next/head';
 import OptionsSwitcher from '../../../example-groups/OptionsSwitcher';
 
 <Head>
-  <title>{'MRT Components - Mantine React Table V2 Docs'}</title>
+  <title>{'MRT Components - Mantine React Table Open Docs'}</title>
   <meta
     name="description"
     content="All the internal MRT components that can be used to build your own custom table components"
@@ -31,18 +31,18 @@ import OptionsSwitcher from '../../../example-groups/OptionsSwitcher';
 
 <br />
 
-In previous versions of `mantine-react-table`, you only had the option to use the `<MantineReactTable />` component. Now in version 2, all internal MRT components are exported for you to to optionally use to build up your own custom table components.
+In previous versions of `mantine-react-table-open`, you only had the option to use the `<MantineReactTable />` component. Now in version 2, all internal MRT components are exported for you to to optionally use to build up your own custom table components.
 
 ### \<MantineReactTable /\>
 
-[View Source Code on GitHub](https://github.com/KevinVandy/mantine-react-table/blob/v2/packages/mantine-react-table/src/components/MantineReactTable.tsx)
+[View Source Code on GitHub](https://github.com/KevinVandy/mantine-react-table-open/blob/v2/packages/mantine-react-table-open/src/components/MantineReactTable.tsx)
 
 For most use cases, you will probably just use the default `<MantineReactTable />` component.
 
 It accepts table options as props, just like in v1, but it also now simply accepts the `table` instance as its only prop instead. You have the choice to use the `useMantineReactTable` hook to create the table instance in your own scope or not. Using the `table` prop with the `useMantineReactTable` hook is recommended, because it will give you more flexibility as your table features get more complex.
 
 ```jsx
-import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
+import { MantineReactTable, useMantineReactTable } from 'mantine-react-table-open';
 //...
 const table = useMantineReactTable({
   columns,
@@ -53,7 +53,7 @@ return <MantineReactTable table={table} />; //recommended
 ```
 
 ```jsx
-import { MantineReactTable } from 'mantine-react-table';
+import { MantineReactTable } from 'mantine-react-table-open';
 //...
 return <MantineReactTable columns={columns} data={data} enableRowPinning />; //passing props instead like in v1 is possible
 ```
@@ -66,7 +66,7 @@ Mantine React Table now exports all of its internal components. You can use them
 
 #### Table Components
 
-[View Table Components Source Code on GitHub](https://github.com/KevinVandy/mantine-react-table/tree/v2/packages/mantine-react-table/src/components/table)
+[View Table Components Source Code on GitHub](https://github.com/KevinVandy/mantine-react-table-open/tree/v2/packages/mantine-react-table-open/src/components/table)
 
 ##### \<MRT_TablePaper /\>
 
@@ -88,7 +88,7 @@ Be aware that using this deep of a component, you will lose out on row virtualiz
 
 #### TableHead Components
 
-[View TableHead Components Source Code on GitHub](https://github.com/KevinVandy/mantine-react-table/tree/v2/packages/mantine-react-table/src/components/head)
+[View TableHead Components Source Code on GitHub](https://github.com/KevinVandy/mantine-react-table-open/tree/v2/packages/mantine-react-table-open/src/components/head)
 
 ##### \<MRT_TableHead /\>
 
@@ -128,7 +128,7 @@ The Filter Container that contains the filter input and filter actions
 
 #### TableBody Components
 
-[View TableBody Components Source Code on GitHub](https://github.com/KevinVandy/mantine-react-table/tree/v2/packages/mantine-react-table/src/components/body)
+[View TableBody Components Source Code on GitHub](https://github.com/KevinVandy/mantine-react-table-open/tree/v2/packages/mantine-react-table-open/src/components/body)
 
 ##### \<MRT_TableBody /\>
 
@@ -160,7 +160,7 @@ A button or buttons for pinning a row.
 
 #### TableFooter Components
 
-[View TableFooter Components Source Code on GitHub](https://github.com/KevinVandy/mantine-react-table/tree/v2/packages/mantine-react-table/src/components/footer)
+[View TableFooter Components Source Code on GitHub](https://github.com/KevinVandy/mantine-react-table-open/tree/v2/packages/mantine-react-table-open/src/components/footer)
 
 ##### \<MRT_TableFooter /\>
 
@@ -176,7 +176,7 @@ The `<MRT_TableFooterCell />` is a `<td>` element that surrounds the cell value 
 
 #### Input Components
 
-[View Input Components Source Code on GitHub](https://github.com/KevinVandy/mantine-react-table/tree/v2/packages/mantine-react-table/src/components/inputs)
+[View Input Components Source Code on GitHub](https://github.com/KevinVandy/mantine-react-table-open/tree/v2/packages/mantine-react-table-open/src/components/inputs)
 
 ##### \<MRT_EditCellTextField /\>
 

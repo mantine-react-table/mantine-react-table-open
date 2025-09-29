@@ -1,5 +1,5 @@
 import { Box, Anchor } from '@mantine/core';
-import { MantineReactTable, type MRT_ColumnDef } from 'mantine-react-table';
+import { MantineReactTable, type MRT_ColumnDef } from 'mantine-react-table-open';
 import classes from './ComparisonTable.module.css';
 
 const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
@@ -54,9 +54,9 @@ const data = [
     freeOrLicensed: 'Free MIT',
     bundleSize: 45,
     bundlePhobiaImg:
-      'https://badgen.net/bundlephobia/minzip/mantine-react-table@latest?color=blue',
+      'https://badgen.net/bundlephobia/minzip/mantine-react-table-open@latest?color=blue',
     bundlePhobiaLink:
-      'https://bundlephobia.com/package/mantine-react-table@latest',
+      'https://bundlephobia.com/package/mantine-react-table-open@latest',
     description:
       'Built on top of TanStack Table V8 and Mantine V6, Mantine React Table (MRT) is a batteries-included React table library that attempts to provide all the table features you need while trying to stay highly performant and relatively lightweight. Customization is treated as a top priority to let you override any styles you need to change. Mantine React Table was forked from Material React Table and is being built in 2023.',
   },
