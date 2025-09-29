@@ -4,32 +4,11 @@ View the [Docs Site](https://www.mantine-react-table.com/)
 
 A fork of [Material React Table](https://www.material-react-table.com)
 
-V1 released July 18, 2023
-
-<a href="https://npmjs.com/package/mantine-react-table" target="_blank">
-  <img alt="" src="https://badgen.net/npm/v/mantine-react-table?color=blue" />
-</a>
-<a href="https://npmtrends.com/mantine-react-table" target="_blank">
-  <img alt="" src="https://badgen.net/npm/dt/mantine-react-table?label=installs&icon=npm&color=blue" />
-</a>
-<a href="https://bundlephobia.com/result?p=mantine-react-table" target="_blank">
-  <img alt="" src="https://badgen.net/bundlephobia/minzip/mantine-react-table@latest?color=blue" />
-</a>
-<a href="https://star-history.com/#kevinvandy/mantine-react-table&Date" target="_blank">
-  <img alt="" src="https://badgen.net/github/stars/KevinVandy/mantine-react-table?color=blue" />
-</a>
-<a href="https://github.com/KevinVandy/mantine-react-table/blob/v2/LICENSE" target="_blank">
-  <img alt="" src="https://badgen.net/github/license/KevinVandy/mantine-react-table?color=blue" />
-</a>
-<a href="http://makeapullrequest.com" target="_blank">
-  <img alt="" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" />
-</a>
-
 ## About
 
 ### _Quickly Create React Data Tables with Mantine_
 
-### __Built with [Mantine <sup>V7</sup>](https://mantine.dev/) and [TanStack Table <sup>V8</sup>](https://tanstack.com/table/v8)__
+### __Built with [Mantine <sup>V8</sup>](https://mantine.dev/) and [TanStack Table <sup>V8</sup>](https://tanstack.com/table/v8)__
 
 <img src="https://mantine-react-table.com/banner.png" alt="MRT" height="50"/>
 
