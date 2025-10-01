@@ -1,5 +1,7 @@
 import classes from './MRT_TableHeadCellFilterContainer.module.css';
 
+import { useRef } from 'react';
+
 import {
   ActionIcon,
   Collapse,
@@ -50,6 +52,10 @@ export const MRT_TableHeadCellFilterContainer = <TData extends MRT_RowData>({
   const currentFilterOption = columnDef._filterFn;
   const allowedColumnFilterOptions =
     columnDef?.columnFilterModeOptions ?? columnFilterModeOptions;
+  const isCollapseOpen =
+    showColumnFilters || columnFilterDisplayMode === 'popover';
+const collapseRef = useRef<HTMLDivElement | null>(null);
+
   const showChangeModeButton =
     enableColumnFilterModes &&
     columnDef.enableColumnFilterModes !== false &&
@@ -57,7 +63,26 @@ export const MRT_TableHeadCellFilterContainer = <TData extends MRT_RowData>({
       !!allowedColumnFilterOptions?.length);
 
   return (
-    <Collapse in={showColumnFilters || columnFilterDisplayMode === 'popover'}>
+    <Collapse
+      in={isCollapseOpen}
+      renderRoot={({ ref, style, ...rootProps }) => (
+        <div
+          {...rootProps}
+          ref={(element) => {
+            if (typeof ref === 'function') {
+              ref(element);
+            } else if (ref) {
+              ref.current = element;
+            }
+            collapseRef.current = element;
+          }}
+          style={{
+            ...style,
+            overflow: isCollapseOpen ? 'visible' : style?.overflow,
+          }}
+        />
+      )}
+    >
       <Flex direction="column" {...rest}>
         <Flex align="flex-end">
           {columnDef.filterVariant === 'checkbox' ? (
